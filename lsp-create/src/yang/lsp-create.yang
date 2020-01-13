@@ -1,0 +1,125 @@
+module lsp-create {
+
+    namespace "http://example.com/lsp-create";
+    prefix lsp-create;
+
+    import ietf-inet-types {
+        prefix inet;
+    }
+    import tailf-common {
+        prefix tailf;
+    }
+    import tailf-ncs {
+        prefix ncs;
+    }
+
+    description
+      "Action to re-route LSPs";
+
+    revision 2016-01-01 {
+        description
+          "Initial revision.";
+    }
+
+    grouping lsp-provision-input {
+ 
+        leaf source {
+            tailf:info "Name of the source node";
+            type leafref {
+                path "/ncs:devices/ncs:device/ncs:name";
+            }
+        }
+        leaf lsp-name {
+            tailf:info "Name of the lsp";
+            type string;
+        }
+        leaf destination {
+            tailf:info "Name of the destination node";
+            type leafref {
+                path "/ncs:devices/ncs:device/ncs:name";
+            }
+        }
+        leaf tunnel-id {
+            tailf:info "Tunnel id";
+            type uint32;
+        }
+        leaf auto-route {
+            tailf:info "Auto route to be set / not set";
+            type boolean;
+            default false;
+        }
+        leaf action-type {
+            tailf:info "action-type (commit or dry-run)";
+            type enumeration {
+                enum dry-run;
+                enum commit;
+            }
+            default "dry-run";
+        }
+        /*leaf setup-pri {
+         * 	tailf:info "Setup priority";
+         *       			type uint32;
+         * }
+         * leaf hold-pri {
+         * 	tailf:info "Hold priority";
+         *       			type uint32;
+         }*/
+        list lsp-path {
+            key path-option;
+            leaf path-option {
+                tailf:info "Path option number";
+                type uint16;
+            }
+            list hop {
+                key step;
+
+                leaf step {
+                    tailf:info "Step for the hop";
+                    type uint16;
+                }
+                leaf hop-node {
+                    tailf:info "Name of the remote node";
+                    type leafref {
+                        path "/ncs:devices/ncs:device/ncs:name";
+                    }
+                }
+                leaf hop-if {
+                    tailf:info "remote interface of node";
+                    type string;
+                }
+                leaf hop-ip {
+                    tailf:info "remote IP address of node";
+                    // type inet:ipv4-address;
+                    type string;
+                }
+            }
+        }
+    }
+
+    container action {
+        tailf:action lsp-create {
+          tailf:actionpoint lsp-creater-action-point;
+          tailf:info "Action to Deploy New LSP in Network with paths (Current scenario - 1 explict path and 1 dynamic path)";
+
+          input {
+           
+            uses lsp-provision-input;
+          
+          }
+
+          output {
+              leaf result {
+                  tailf:info "Boolean flag for status of lsp configuration";
+                  type boolean;
+                  default false;
+              }
+
+              leaf message {
+                  tailf:info "Output string for lsp config details";
+                  type string;
+              }
+          }
+        }
+    }
+
+}

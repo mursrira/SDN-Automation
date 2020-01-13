@@ -1,0 +1,31 @@
+<networks xmlns="http://cisco.com/ns/wae">
+    <network tags = "merge">
+        <name>{$NETWORK_NAME}</name>
+        <model>
+            <nodes>
+                <node>
+                    <name>{$SOURCE}</name>
+                    <named-paths>
+                        <named-path>
+                            <name>{$PATH_NAME}</name>
+                            <active>true</active>
+                            <hops>
+                                <hop>
+                                    <step>{$STEP}</step>
+                                    <type>strict</type>
+				    <interface>
+					<node-name>{$HOP_NODE}</node-name>
+					<interface-name>{$HOP_IF}</interface-name>
+				    </interface>
+                                    <unresolved-hop>{$HOP_LOOPBACK}</unresolved-hop>
+                                </hop>
+                            </hops>
+                        </named-path>
+                    </named-paths>
+                </node>
+            </nodes>
+        </model>
+    </network>            
+
+</networks>
+

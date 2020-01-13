@@ -1,0 +1,61 @@
+module network-delay-cmd-generator-collector {
+
+  namespace "http://cisco.com/ns/wae/opm/network-delay-cmd-generator-collector";
+
+  prefix "network-delay-cmd-generator-collector";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module for computing optimized paths of LSP";
+
+  revision 2017-02-24 {
+   description
+    "First release.";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input {
+  }
+
+  grouping config-opm-output {
+  }
+  augment "/wae:networks/wae:network/wae:opm" {
+    container network-delay-cmd-generator-collector {
+      tailf:info "A python OPM module for computing optimized paths of LSP";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint network-delay-cmd-generator-collector-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-output;
+        }
+      }
+    }
+  }
+}

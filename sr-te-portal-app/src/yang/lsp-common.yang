@@ -1,0 +1,211 @@
+module lsp-common {
+
+  namespace "http://cisco.com/ns/wae/opm/lsp-common";
+
+  prefix "lsp-common";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module defining LSP common properties";
+
+  revision 2017-02-24 {
+   description
+    "First release.";
+  }
+
+    grouping lsp-keys {
+
+        list lspKeys {
+            key "lspName lspSrcNode";
+            uses lspKey;
+        }
+
+    }
+    grouping hops {
+        
+        list hop{
+            key "step ip-address";
+            
+            leaf step{
+                type string;
+            }
+            leaf ip-address{
+                type string;
+            }
+            uses interfaceKey;
+        }
+    }
+
+    grouping interface-keys {
+        
+        list interfaceKeys{
+            key "intfSrcNode intfName";
+            uses interfaceKey;
+        }
+
+    }
+
+    grouping interfaceKey {
+        leaf intfSrcNode {
+            tailf:info "Interface Source Node";
+            type string;
+        }
+        leaf intfName {
+            tailf:info "Interface Name";
+            type string;
+        }
+    }
+    
+    grouping lspKey {
+        leaf lspName{
+                tailf:info "LSP name";
+                type string;
+        }
+        leaf lspSrcNode {
+                tailf:info "Head End router name of LSP";
+                type string;
+        }
+    }
+
+    grouping interface {
+        uses interfaceKey;
+        leaf intfDestNode {
+            tailf:info "Destination Node";
+            type string;
+        }
+        leaf traffic {
+            tailf:info "Traffic";
+            type string;
+        }
+        leaf utilization {
+            tailf:info "Utilization";
+            type string;
+        }
+        leaf capacity {
+            tailf:info "capacity";
+            type string;
+        }
+    }
+
+    grouping lsp {
+
+        uses lspKey;
+
+        leaf lspDstNode {
+            tailf:info "LSP Destination node";
+            type string;
+        }            
+
+        leaf lspClass {
+            tailf:info "LSP Class";
+            type string;
+        }
+
+        leaf traffic{
+            tailf:info "Traffic";
+            type string;
+        }
+        leaf delay {
+            tailf:info "Delay";
+            type string;
+        }
+        leaf delay-sla {
+            tailf:info "Delay-SLA";
+            type string;
+        }
+        container complete-path{
+            uses interface-keys;
+            /*list interfaceKeys{
+                key "intfSrcNode intfName";
+                uses interfaceKey;
+            }*/
+        }
+        container congested-path{
+            uses interface-keys;
+            /*list interfaceKeys{
+                key "intfSrcNode intfName";
+                uses interfaceKey;
+            }*/
+        } 
+    }
+    grouping lsp-with-out-path {
+
+        uses lspKey;
+           
+	leaf lspDstNode {
+            tailf:info "LSP Destination node";
+            type string;
+        } 
+
+        leaf lspClass {
+            tailf:info "LSP Class";
+            type string;
+        }
+
+        leaf traffic{
+            tailf:info "Traffic";
+            type string;
+        }
+        leaf delay {
+            tailf:info "Delay";
+            type string;
+        }
+        leaf delay-sla {
+            tailf:info "Delay-SLA";
+            type string;
+        }
+    }
+
+    grouping lsp-path{
+        uses hops;
+    }
+
+    /*grouping re-routed-lsp-original-path {
+        
+        uses lspKey;
+
+        container lsp-path {
+            uses hops;
+        }
+
+    }
+    grouping re-routed-lsp-optimized-path {
+        
+        uses lspKey;
+
+        container lsp-path {
+            uses hops;
+        }
+    }*/
+    
+    /*grouping lsp-parameters {
+        
+        list lsp-parameters {
+            
+            key "lspName lspSrcNode";
+            
+            uses lsp;          
+
+        }
+    
+    }*/
+
+    /*grouping interface-parameters {
+        
+        list interface-parameters{
+            key "intfSrcNode intfName";         
+            uses interface;
+        }
+
+    }*/
+
+
+}
+
+

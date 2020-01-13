@@ -1,0 +1,73 @@
+module lsp-fetch-all {
+
+  namespace "http://cisco.com/ns/wae/opm/lsp-fetch-all";
+
+  prefix "lsp-fetch-all";
+  
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to fetch all LSPs in network.";
+
+  revision 2017-02-24 {
+   description
+    "First release.";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input {
+    leaf flag {
+      tailf:info "A sample input boolean flag";
+      type boolean;
+      default false;
+    }
+    leaf value {
+      tailf:info "A sample input string";
+      type string;
+    }
+  }
+
+  grouping config-opm-output {
+    uses lsp-common:lsp-keys;
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container lsp-fetch-all {
+      tailf:info "A python OPM module to fetch all LSPs in network";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint lsp-fetch-all-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-output;
+        }
+      }
+    }
+  }
+}

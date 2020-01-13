@@ -1,0 +1,96 @@
+module sr-fetch-congestion {
+
+  namespace "http://cisco.com/ns/wae/opm/sr-fetch-congestion";
+
+  prefix "sr-fetch-congestion";
+  
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to fetch all LSPs in network.";
+
+  revision 2018-12-14 {
+   description
+    "First release.";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input {
+    leaf interface-utilization {
+      tailf:info "interface utilization";
+        type uint16 {
+          tailf:info "<0-120>;;Percentage of interface utilization";
+          range "0..120";
+        }   
+
+    }
+	 leaf link-off-load-status{
+      tailf:info "Link Off Load Status true/false";
+      tailf:cli-boolean-no;
+      type boolean;
+      default false;
+    }
+  }
+
+  grouping config-opm-congestion-output {
+        
+        list congested-lsps {
+            key "lspName lspSrcNode";
+            uses lsp-common:lsp;          
+        }
+        list congested-interfaces {
+            key "intfSrcNode intfName";
+            uses lsp-common:interface; 
+        }
+        list sla-violated-lsps {
+            key "lspName lspSrcNode";
+            uses lsp-common:lsp-with-out-path;
+            
+            container complete-path {
+                //uses lsp-common:lsp-path;
+                uses lsp-common:interface-keys;  
+            }
+        }
+
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container sr-fetch-congestion {
+      tailf:info "A python OPM module to fetch all LSPs in network";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint sr-fetch-congestion-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-congestion-output;
+        }
+      }
+    }
+  }
+}

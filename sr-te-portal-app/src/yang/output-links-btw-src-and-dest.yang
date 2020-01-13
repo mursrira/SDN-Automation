@@ -1,0 +1,86 @@
+module output-links-btw-src-and-dest {
+
+  namespace "http://cisco.com/ns/wae/opm/output-links-btw-src-and-dest";
+
+  prefix "output-links-btw-src-and-dest";
+  
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to fetch all LSPs in network.";
+
+  revision 2018-11-11 {
+   description
+    "Version 1.0";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+  grouping config-opm-input {
+    leaf source-node {
+      tailf:info "source node";
+      type string;  
+    }
+    leaf destination-node {
+      tailf:info "destination node";
+      type string;  
+    }
+  }
+
+
+  grouping config-opm-congestion-output {
+        
+    list output-interfaces-list {
+      key "capacity interface-name";
+      
+      leaf capacity{
+       tailf:info "capacity";
+       type string;  
+      }
+
+      leaf interface-name{
+       tailf:info "Name of interface";
+       type string;  
+      }
+    }
+
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container output-links-btw-src-and-dest {
+      tailf:info "A python OPM module to fetch all LSPs in network";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint output-links-btw-src-and-dest-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-congestion-output;
+        }
+      }
+    }
+  }
+}

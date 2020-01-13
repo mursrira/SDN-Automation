@@ -1,0 +1,91 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+    <devices xmlns="http://tail-f.com/ns/ncs">
+        <device>
+            <name>{$DEVICE}</name>
+            <config when="{$DEVICE_TYPE='CISCO_IOSXR'}">
+                <interface xmlns="http://tail-f.com/ned/cisco-ios-xr">
+                    <tunnel-te>
+                        <id>{$TUNNEL_ID}</id>
+                        <description>{$DESCRIPTION}</description>
+                        <bandwidth>10000000</bandwidth>
+                        <ipv4>
+                            <unnumbered>
+                                <Loopback>0</Loopback>
+                            </unnumbered>
+                        </ipv4>
+                        <load-interval>30</load-interval>
+                        <priority>
+                            <setup>0</setup>
+                            <hold-value>0</hold-value>
+                        </priority>
+                        <record-route/>
+                        <destination>{$DESTINATION_LOOPBACK}</destination>
+                        <path-option>
+                            <preference-priority>{$PATH_OPTION}</preference-priority>
+                            <explicit>
+                                <name>{$PATH_NAME}</name>
+                            </explicit>
+                            <lockdown/>
+                        </path-option>
+                        <path-option>
+                            <preference-priority>100</preference-priority>
+                            <dynamic/>
+                        </path-option>
+                        <autoroute when="{$AUTO_ROUTE='true'}">
+                            <announce/>
+                        </autoroute>
+                    </tunnel-te>
+                </interface>
+            </config>
+            <config when="{$DEVICE_TYPE='CISCO_IOS'}">
+                <interface xmlns="urn:ios">
+                    <Tunnel>
+                        <name>{$TUNNEL_ID}</name>
+                        <description>{$DESCRIPTION}</description>
+                        <load-interval>30</load-interval>
+                        <bandwidth>
+                            <kilobits>10000000</kilobits>
+                        </bandwidth>
+                        <ip>
+                            <unnumbered>
+                                <Loopback>0</Loopback>
+                            </unnumbered>
+                        </ip>
+                        <tunnel>
+                            <destination>{$DESTINATION_LOOPBACK}</destination>
+                            <mode>
+                                <mpls>
+                                    <traffic-eng/>
+                                </mpls>
+                            </mode>
+                            <mpls>
+                                <traffic-eng>
+                                    <priority>
+                                        <setup-priority>0</setup-priority>
+                                        <hold-priority>0</hold-priority>
+                                    </priority>
+                                    <path-option>
+                                        <id>{$PATH_OPTION}</id>
+                                        <explicit>
+                                            <name>{$PATH_NAME}</name>
+                                        </explicit>
+                                        <lockdown/>
+                                    </path-option>
+                                    <path-option>
+                                        <id>100</id>
+                                        <dynamic/>
+                                    </path-option>
+                                    <autoroute when="{$AUTO_ROUTE='true'}">
+                                        <announce/>
+                                    </autoroute>
+                                </traffic-eng>
+                            </mpls>
+                        </tunnel>
+                    </Tunnel>
+                </interface>
+            </config>
+        </device>
+    </devices>
+</config>
+
+<!--Added DEVICE_TYPE and DEVICE-->

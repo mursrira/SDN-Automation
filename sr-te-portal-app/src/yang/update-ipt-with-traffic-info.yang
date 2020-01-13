@@ -1,0 +1,38 @@
+module update-ipt-with-traffic-info {
+
+ namespace "http://cisco.com/ns/wae/opm/update-ipt-with-traffic-info"; 
+  prefix "update-ipt-with-traffic-info";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  description
+    "Action to Update IPT with Traffic Info";
+
+  revision 2018-12-19 {
+    description
+      "v0.1";
+  }
+ 
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    
+    container update-ipt-with-traffic-info {
+
+        tailf:action run {
+          tailf:actionpoint update-ipt-with-traffic-info-action-point;
+          /*input {
+            uses config-opm-input;
+          }
+          output {
+              uses config-opm-output;
+          }*/
+        }
+    }
+  }
+}
+
+
+

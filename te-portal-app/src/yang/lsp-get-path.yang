@@ -1,0 +1,127 @@
+module lsp-get-path {
+
+  namespace "http://cisco.com/ns/wae/opm/lsp-get-path";
+
+  prefix "lsp-get-path";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to get Current path of LSP.";
+
+  revision 2017-02-24 {
+   description
+    "First release.";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input {
+        leaf lspName {
+                tailf:info "LSP name";
+                type string;
+        }
+        leaf lspSrcNode {
+                tailf:info "Head End router name of LSP";
+                type string;
+        }
+  }
+
+  grouping config-opm-output {
+	list lspPath {
+        	key pathOption;
+                
+		leaf pathOption {
+               		tailf:info "Path option number";
+                        type uint16;
+                }
+            leaf latency {
+                        tailf:info "Latency of this path";
+                        type string;
+                }
+        	leaf isActive {
+                        tailf:info "Is this path active";
+                        type boolean;
+                }
+            leaf isActual {
+                        tailf:info "Is this path actual-path";
+                        type boolean;
+                }	
+		list hop {
+			key step;
+                	leaf step {
+                		tailf:info "Step for the hop";
+                        	type uint16;
+                	}
+		
+			leaf local_node {
+				tailf:info "Name of the hop node";
+				type string;
+			}
+			leaf local_ifipadd {
+				tailf:info "Name of the hop node";
+				type string;
+			}
+			leaf local_ifname {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+
+			leaf remote_node {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+			leaf remote_ifipadd {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+			leaf remote_ifname {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+			leaf latency {
+                        		tailf:info "Latency of this hop";
+                        		type string;
+                		}
+		}
+	}      
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container lsp-get-path {
+      tailf:info "A python OPM module to get current path of LSP";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint lsp-get-path-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-output;
+        }
+      }
+    }
+  }
+}

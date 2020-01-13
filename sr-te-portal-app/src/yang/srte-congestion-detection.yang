@@ -1,0 +1,80 @@
+module srte-congestion-detection {
+
+  namespace "http://cisco.com/ns/wae/opm/srte-congestion-detection";
+
+  prefix "srte-congestion-detection";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM Module to detect and report congested TE Tunnels.";
+
+  revision 2018-11-12 {
+   description
+    "v1.0";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input {
+    leaf flag {
+      tailf:info "A sample input boolean flag";
+      type boolean;
+      default false;
+    }
+    leaf value {
+      tailf:info "A sample input string";
+      type string;
+    }
+  }
+
+  grouping config-opm-output {
+    leaf result {
+      tailf:info "A sample output boolean flag";
+      type boolean;
+      default false;
+    }
+    leaf message {
+      tailf:info "A sample output string message";
+      type string;
+    }
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container srte-congestion-detection {
+      tailf:info "A python OPM module for SRTE congestion detection and reporting";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint srte-congestion-detection-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-output;
+        }
+      }
+    }
+  }
+}

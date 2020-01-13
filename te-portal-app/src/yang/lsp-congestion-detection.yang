@@ -1,0 +1,80 @@
+module lsp-congestion-detection {
+
+  namespace "http://cisco.com/ns/wae/opm/lsp-congestion-detection";
+
+  prefix "lsp-congestion-detection";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM Module to detect and report congested TE Tunnels.";
+
+  revision 2017-02-24 {
+   description
+    "First release.";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input {
+    leaf flag {
+      tailf:info "A sample input boolean flag";
+      type boolean;
+      default false;
+    }
+    leaf value {
+      tailf:info "A sample input string";
+      type string;
+    }
+  }
+
+  grouping config-opm-output {
+    leaf result {
+      tailf:info "A sample output boolean flag";
+      type boolean;
+      default false;
+    }
+    leaf message {
+      tailf:info "A sample output string message";
+      type string;
+    }
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container lsp-congestion-detection {
+      tailf:info "A python OPM module for LSP congestion detection and reporting";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint lsp-congestion-detection-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-output;
+        }
+      }
+    }
+  }
+}

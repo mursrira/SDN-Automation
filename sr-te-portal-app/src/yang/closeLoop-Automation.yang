@@ -1,0 +1,66 @@
+// =========================================================================
+//                          CLOSE LOOP YANG
+// =========================================================================
+ module closeLoop-Automation {
+
+  namespace "http://cisco.com/ns/wae/opm/closeLoop-Automation";
+
+  prefix "closeLoop-Automation";
+
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+  import bandwidth-optimization {prefix bandwidth-optimization; }
+  import sr-fetch-congestion {prefix sr-fetch-congestion;}
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to Optimize SR Tunnels in network.";
+
+
+// =========================================================================
+// REVISION
+// =========================================================================
+  revision 2018-12-14 {
+   description
+    "version 1.0";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container closeLoop-Automation {
+      tailf:info "A python OPM module to fetch all LSPs in network";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint closeLoop-action-point;
+      }
+    }
+  }
+
+
+/// ========================================================================
+//                          EOF
+/// ========================================================================
+
+}

@@ -1,0 +1,114 @@
+module lsp-rollback {
+
+ namespace "http://cisco.com/ns/wae/opm/lsp-rollback"; 
+  prefix "lsp-rollback";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  description
+    "Action to re-route LSPs";
+
+  revision 2016-01-01 {
+    description
+      "Initial revision.";
+  }
+
+  grouping config-opm-input {
+
+    leaf action-type {
+     tailf:info "action-type (commit or dry-run)";
+      type enumeration {
+        enum dry-run;
+        enum commit;
+      }
+        default "dry-run";
+    }
+
+
+    list te-interfaces {
+
+      key te-name;
+
+      leaf action_type_status {
+        tailf:info "action type status(Created or Re-route)";
+        type string;
+      }
+      leaf unique_id {
+        tailf:info "Rollback Row id";
+        type string;
+      }
+
+      leaf srcNode {
+        tailf:info "Name of the source node";
+        type string;
+      }
+
+      leaf te-name {
+        tailf:info "Name of the te-namenode";
+        type string;
+      }
+
+      leaf destNode {
+        tailf:info "IP Address of the Destination Node";
+        type string;
+      }
+
+      leaf pathOption {
+        tailf:info "Path option number";
+        type uint16;
+      }
+
+      list hop {
+        key step;
+        leaf step {
+          tailf:info "Step for the hop";
+          mandatory true;
+          type uint16;
+        }
+                            
+        leaf ipaddress {
+          tailf:info "Ipaddress of the next hop";
+          mandatory true;
+          type string;
+          }
+
+        leaf intfSrcNode {
+          tailf:info "Interface Source Node";
+          type string;
+        }
+      }	
+    }
+
+  }
+
+  grouping config-opm-output {
+
+    leaf message {
+      tailf:info "Output string for lsp config details";
+      type string;
+    }
+
+  } 
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    
+    container lsp-rollback {
+
+        tailf:action run {
+          tailf:actionpoint rollback-action-point;
+          input {
+            uses config-opm-input;
+          }
+          output {
+              uses config-opm-output;
+          }
+        }
+    }
+  }
+}
+
+
+

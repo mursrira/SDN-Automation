@@ -1,0 +1,35 @@
+
+This is a generated python OPM package, made by:
+
+ wae-make-package --python-opm-skeleton lsp-optm-rsvp
+
+It contains a sample Yang model and the implementation for a skeleton python
+OPM package invoked through an action point. They serve as an example to get
+you going.
+
+- In package-meta-data.xml, the <name> is the module name.
+
+- The python classes executed by the module exist in python/opmSkeleton.py and
+  are named OpmSkeleton and OpmSkeletonAction. If the python file or classes
+  are renamed, the <python-class-name> in package-meta-data.xml needs to be
+  updated to replace opmSkeleton.OpmSkeleton with the new name.
+
+- The action point triggered by this sample module is called
+  opm-skeleton-action-point and is present in the Yang model.
+
+  To rename the action point, an update is needed to python/opmSkeleton.py
+  and src/lsp-optm-rsvp.yang files.
+
+- In this package,
+
+    The OpmSkeleton class implements the registration of the action point.
+
+    The OpmSkeletonAction class, derived from OpmActionBase, implements a
+    skeleton python OPM package which:
+    - Takes as inputs a boolean flag and string value.
+    - Copies them over to output attributes, a boolean result and a string
+      message.
+
+The included src/Makefile can be used to compile the Yang model and build the
+fxs file, or you can use the --build option of wae-make-package.
+

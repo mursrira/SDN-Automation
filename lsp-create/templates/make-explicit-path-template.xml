@@ -1,0 +1,51 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+    <devices xmlns="http://tail-f.com/ns/ncs">
+        <device>
+            <name>{$DEVICE}</name>
+            <config when="{$DEVICE_TYPE='CISCO_IOSXR'}">
+            <!--config-->
+                <explicit-path xmlns="http://tail-f.com/ned/cisco-ios-xr">
+                    <name>
+                        <pathname>{$PATH_NAME}</pathname>
+                        <index>
+                            <index-id>{$STEP}</index-id>
+                            <keyword>next-address</keyword>
+                            <hop-type>strict</hop-type>
+                            <ipv4>
+                                <unicast>{$HOP_LOOPBACK}</unicast>
+                            </ipv4>
+                        </index>
+                        <!---index>
+                            <index-id>20</index-id>
+                            <keyword>next-address</keyword>
+                            <hop-type>strict</hop-type>
+                            <ipv4>
+                                <unicast>2.3.4.5</unicast>
+                            </ipv4>
+                        </index-->
+                    </name>
+                </explicit-path>
+            </config>
+            <config when="{$DEVICE_TYPE='CISCO_IOS'}">
+                <ip xmlns="urn:ios">
+                    <explicit-path>
+                        <name>
+                            <name>{$PATH_NAME}</name>
+                            <mode>enable</mode>
+                            <index>
+                                <id>{$STEP}</id>
+                                <next-address>{$HOP_LOOPBACK}</next-address>
+                            </index>
+                            <!--index>
+                                <id>20</id>
+                                <next-address>2.3.4.5</next-address>
+                            </index-->
+                        </name>
+                    </explicit-path>
+                </ip>
+            </config>
+        </device>
+    </devices>
+</config>
+
+        <!--{$DEVICE}  added new , handle them-->

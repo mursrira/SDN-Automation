@@ -1,0 +1,35 @@
+module lsp-common {
+
+  namespace "http://cisco.com/ns/wae/opm/lsp-common";
+
+  prefix "lsp-common";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module defining LSP common properties";
+
+  revision 2017-02-24 {
+   description
+    "First release.";
+  }
+
+  grouping lsp-keys {
+    list lspKeys {
+        key "lspName lspSrcNode";
+        leaf lspName{
+                tailf:info "LSP name";
+                type string;
+        }
+        leaf lspSrcNode {
+                tailf:info "Head End router name of LSP";
+                type string;
+        }
+    }
+  }
+}

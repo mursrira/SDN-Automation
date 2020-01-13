@@ -1,0 +1,252 @@
+// =========================================================================
+//                          SR-TE-BW-OPT YANG
+// =========================================================================
+ 
+module bandwidth-optimization {
+
+  namespace "http://cisco.com/ns/wae/opm/bandwidth-optimization";
+
+  prefix "bandwidth-optimization";
+
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to Optimize SR Tunnels in network.";
+
+
+// =========================================================================
+// REVISION
+// =========================================================================
+  revision 2018-12-14 {
+   description
+    "version 1.0";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input {
+    leaf post-optimization-threshold{
+      tailf:info "Post Optmization Threshold";
+        type uint16 {
+          tailf:info "<0-120>;;Percentage of interface utilization";
+          range "1..120";
+        }
+    }
+    leaf exclude-vip-tunnels{
+      tailf:info "Exclude VIP Tunnels - true/false";
+      tailf:cli-boolean-no;
+      type boolean;
+      default true;
+    }
+    leaf create-new-lsps{
+      tailf:info "Create new LSPS - true/false";
+      tailf:cli-boolean-no;
+      type boolean;
+      default true;
+    }
+    leaf re-route-non-vip-lsps{
+      tailf:info "Re-route non VIP LSPS - true/false";
+      tailf:cli-boolean-no;
+      type boolean;
+      default true;
+    }
+    list lsps-to-be-optimized {
+        key "lspName lspSrcNode";
+        tailf:info "List of LSPs to be optimized";
+        uses lsp-common:lspKey;
+    }
+    list interfaces-to-be-optimized {
+        key "intfName intfSrcNode";
+        tailf:info "List of interfaces to be optimized";
+        uses lsp-common:interfaceKey;
+    }
+
+    leaf link-off-load-status{
+      tailf:info "Link Off Load Status true/false";
+      tailf:cli-boolean-no;
+      type boolean;
+      default false;
+    }
+
+
+    leaf link-off-load-value{
+      tailf:info "Link off load threshold value";
+        type uint16 {
+          tailf:info "<0-120>;;Percentage of interface utilization";
+          range "1..120";
+        }
+        default 80;
+    }
+
+
+  }
+
+  grouping config-opm-output {
+   
+    leaf num-congested-interfaces-bfr-optimization{
+        tailf:info "Number of Congested interfaces before Optimization";
+        type string;
+    }
+    leaf num-congested-interfaces-aft-optimization{
+        tailf:info "Number of Congested interfaces after Optimization";
+        type string;
+    
+    }
+    leaf max-intf-utilization-bfr-optimization{
+        tailf:info "Maximum interface utilization before Optimization";
+        type string; 
+    }
+    leaf max-intf-utilization-aft-optimization{
+        tailf:info "Maximum interface utilization after Optimization";
+        type string; 
+    }
+    leaf num-of-re-routed-lsps{
+        tailf:info "Number of re-routed LSPs";
+        type string;
+    }
+    leaf num-of-created-lsps{
+        tailf:info "Number of created LSPs";
+        type string;
+    }
+    leaf num-of-deleted-lsps{
+        tailf:info "Number of deleted LSPs";
+        type string;
+    }
+
+      leaf num-interfaces-selected-for-link-offload{
+        tailf:info "Number of selected interfaces for link-offload";
+        type string;
+    }
+
+    leaf num-selected-interfaces-cannot-be-offloaded{
+        tailf:info "Number of selected interface can't be off-loaded";
+        type string;
+    }
+
+    leaf max-intf-utilization-of-selected-intfs-bfr-offload{
+        tailf:info "Maximum interfaces utilization of selected interface before offload";
+        type string;
+    }
+
+    leaf max-intf-utilization-of-selected-intfs-aft-offload{
+        tailf:info "Maximum interfaces utilization of selected interface after offload";
+        type string;
+    }
+
+
+  }
+  grouping config-opm-congestion-output {
+        
+        list congested-lsps {
+            key "lspName lspSrcNode";
+            uses lsp-common:lsp;          
+        }
+        list congested-interfaces {
+            key "intfSrcNode intfName";
+            uses lsp-common:interface; 
+        }
+        /*list re-routed-lsps-original-path {
+            key "lspName lspSrcNode";
+            uses lsp-common:re-routed-lsp-original-path;
+        }
+        list re-routed-lsps-optimized-path {
+            key "lspName lspSrcNode";
+            uses lsp-common:re-routed-lsp-optimized-path;          
+        }*/
+       list re-routed-lsps {
+         key "lspName lspSrcNode";
+
+         //uses lsp-common:lspKey;
+         uses lsp-common:lsp-with-out-path;
+
+         container original-path {
+          uses lsp-common:lsp-path;  
+         }
+         container re-routed-opt-path {
+          uses lsp-common:lsp-path; 
+         }
+         leaf prev-delay {
+            tailf:info "previous Delay";
+            type string;
+         }
+
+       }
+       list newly-created-lsps {
+         key "lspName lspSrcNode";
+
+         uses lsp-common:lsp-with-out-path;
+         container newly-created-lsp-path {
+            uses lsp-common:lsp-path;
+          }
+
+       }
+       list deleted-lsps {
+         key "lspName lspSrcNode";
+
+         uses lsp-common:lsp-with-out-path;
+         container deleted-lsp-path {
+            uses lsp-common:lsp-path;
+          }
+          leaf prev-delay {
+              tailf:info "previous Delay";
+              type string;
+          }
+       }
+
+       list non-off-loaded-interfaces{
+            key "intfSrcNode intfName";
+            uses lsp-common:interface;
+
+       }
+
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container bandwidth-optimization {
+      tailf:info "Hybrid SR-te-bw";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint bandwidth-optimization-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          container optimization-results {
+            uses config-opm-output;
+
+            uses config-opm-congestion-output;
+          }
+        }
+      }
+    }
+  }
+
+
+/// ========================================================================
+//                          EOF
+/// ========================================================================
+
+}

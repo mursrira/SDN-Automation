@@ -1,0 +1,156 @@
+module lsp-optm-rsvp {
+
+  namespace "http://cisco.com/ns/wae/opm/lsp-optm-rsvp";
+
+  prefix "lsp-optm-rsvp";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module for computing optimized paths of LSP";
+
+  revision 2017-02-24 {
+   description
+    "First release.";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping exclusion-circuits{
+	  list excludeCircuits {
+		  tailf:info "List of circuits to exclude while computing optimised paths";
+		  leaf SrcNode {
+					tailf:info "Source node of circuit";
+					type string;
+					}
+		  leaf SrcInterface {
+					tailf:info "Source interface of circuit";
+					type string;
+					}           
+		  leaf DestNode {
+					tailf:info "Destination node of circuit";
+					type string;
+					}
+		  leaf DestInterface {
+					tailf:info "Destination interface of circuit";
+					type string;
+					}  
+		}
+  }
+  
+  grouping config-opm-input {
+    leaf lspName {
+    	tailf:info "LSP name";
+        type string;
+    }
+    leaf lspSrcNode {
+    	tailf:info "Head End router name of LSP";
+    	type string;
+    }
+    leaf pathCount {
+      tailf:info "Number of requested Optimized paths";
+      type uint16;
+    }
+    leaf autoRoute {
+      tailf:info "AutoRoute enabled or not";
+      type boolean;
+    }
+    leaf shutdown {
+      tailf:info "True for shutting down existing LSP, False for Loadsharing";
+      type boolean;
+    }
+    uses exclusion-circuits;
+	
+  }
+
+  grouping config-opm-output {
+        list lspPath {
+		key pathOption;
+
+                leaf pathOption {
+                        tailf:info "Path option number";
+                        type uint16;
+                }
+
+                leaf latency {
+                        tailf:info "Latency of this path";
+                        type string;
+                }
+                list hop {
+                        key step;
+                        leaf step {
+                                tailf:info "Step for the hop";
+                                type uint16;
+                        }
+
+                        leaf local_node {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+                        leaf local_ifipadd {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+                        leaf local_ifname {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+
+                        leaf remote_node {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+                        leaf remote_ifipadd {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+                        leaf remote_ifname {
+                                tailf:info "Name of the hop node";
+                                type string;
+                        }
+                        leaf latency {
+                        		tailf:info "Latency of this hop";
+                        		type string;
+                		}
+
+                }
+        }
+  }
+  augment "/wae:networks/wae:network/wae:opm" {
+    container lsp-optm-rsvp {
+      tailf:info "A python OPM module for computing optimized paths of LSP";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint lsp-optm-rsvp-action-point;
+        input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-output;
+        }
+      }
+    }
+  }
+}

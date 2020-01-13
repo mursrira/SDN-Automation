@@ -1,0 +1,80 @@
+module fetch-delay-exfo {
+
+  namespace "http://cisco.com/ns/wae/opm/fetch-delay-exfo";
+
+  prefix "fetch-delay-exfo";
+  
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to fetch all LSPs in network.";
+
+  revision 2018-11-11 {
+   description
+    "Version 1.0";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input {
+    leaf interface-utilization {
+      tailf:info "interface utilization";
+        type uint16 {
+          tailf:info "<0-120>;;Percentage of interface utilization";
+          range "1..120";
+        }   
+    }
+  }
+
+  grouping config-opm-congestion-output {
+        
+        list congested-lsps {
+            key "lspName lspSrcNode";
+            uses lsp-common:lsp;          
+        }
+        list congested-interfaces {
+            key "intfSrcNode intfName";
+            uses lsp-common:interface; 
+        }
+
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container fetch-delay-exfo {
+      tailf:info "A python OPM module to fetch all LSPs in network";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint fetch-delay-exfo-action-point;
+        /*input {
+          uses config-opm-input;
+        }
+        output {
+          uses config-opm-congestion-output;
+        }*/
+      }
+    }
+  }
+}

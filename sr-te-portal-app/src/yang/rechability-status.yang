@@ -1,0 +1,71 @@
+module rechability-status {
+
+  namespace "http://cisco.com/ns/wae/opm/rechability-status";
+
+  prefix "rechability-status";
+  
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to fetch all LSPs in network.";
+
+  revision 2018-11-11 {
+   description
+    "Version 1.0";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+  grouping config-opm-input {
+    leaf source-node {
+      tailf:info "source node";
+      type string;  
+    }
+  }
+
+
+  grouping config-opm-congestion-output {
+    leaf wmd-status {
+      type boolean;
+      default false;
+    }
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container rechability-status {
+      tailf:info "OPM API to check WMD rechability Status";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint rechability-status-action-point;
+        input {
+          //uses config-opm-input;
+        }
+        output {
+          uses config-opm-congestion-output;
+        }
+      }
+    }
+  }
+}

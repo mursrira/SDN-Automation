@@ -1,0 +1,74 @@
+// =========================================================================
+//                          LSP-CLASS YANG
+// =========================================================================
+ 
+module lspFwdClassUpdater {
+
+  namespace "http://cisco.com/ns/wae/opm/lspFwdClassUpdater";
+
+  prefix "lspFwdClassUpdater";
+
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to Optimize SR Tunnels in network.";
+
+
+// =========================================================================
+// REVISION
+// =========================================================================
+  revision 2018-12-14 {
+   description
+    "version 1.0";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container lspFwdClassUpdater {
+      tailf:info "Fetch Class Info";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint lspFwdClassUpdater-action-point;
+        input {
+	 leaf forwardClass{
+	    type enumeration {
+	     enum all;
+	     enum non-zero;
+             }
+          default all;
+        }
+      }
+    }
+  }
+}
+
+/// ========================================================================
+//                          EOF
+/// ========================================================================
+
+}

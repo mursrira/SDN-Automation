@@ -1,0 +1,10 @@
+<networks xmlns="http://cisco.com/ns/wae">
+    <network>
+        <name>{$NETWORK_NAME}</name>
+        <nimo>
+            <lsp-config-nimo xmlns="http://cisco.com/ns/wae/nimo/lsp-config-nimo">
+                <in-sync>true</in-sync>
+            </lsp-config-nimo>
+        </nimo>
+    </network>
+</networks>

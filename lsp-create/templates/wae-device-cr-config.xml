@@ -1,0 +1,45 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device>
+    <name>{$DEVICE}</name>
+      <config>
+        <explicit-path xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <name>
+            <pathname>{$PATH_NAME}</pathname>
+            <index>
+              <index-id>{$STEP}</index-id>
+              <keyword>next-address</keyword>
+              <hop-type>strict</hop-type>
+              <ipv4>
+                <unicast>{$HOP_ADDRESS}</unicast>
+              </ipv4>
+            </index>
+          </name>
+        </explicit-path>
+        <interface xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <tunnel-te>
+            <id>{$TUNNEL_ID}</id>
+            <ipv4>
+              <unnumbered>
+                <Loopback>0</Loopback>
+              </unnumbered>
+            </ipv4>
+            <load-interval>30</load-interval>
+            <autoroute>
+              <announce>
+              </announce>
+            </autoroute>
+            <destination>{$DEST_IP}</destination>
+            <path-option>
+              <preference-priority>{$PATH_OPTION}</preference-priority>
+              <explicit>
+                <name>{$PATH_NAME}</name>
+              </explicit>
+              <segment-routing/>
+            </path-option>
+          </tunnel-te>
+        </interface>
+      </config>
+  </device>
+  </devices>
+</config>

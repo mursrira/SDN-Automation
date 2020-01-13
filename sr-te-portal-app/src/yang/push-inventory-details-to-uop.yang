@@ -1,0 +1,38 @@
+module push-inventory-details-to-uop {
+
+ namespace "http://cisco.com/ns/wae/opm/push-inventory-details-to-uop"; 
+  prefix "push-inventory-details-to-uop";
+
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  description
+    "Action to Push Inventory details to UOP";
+
+  revision 2019-09-13 {
+    description
+      "v0.1";
+  }
+ 
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    
+    container push-inventory-details-to-uop {
+
+        tailf:action run {
+          tailf:actionpoint push-inventory-details-to-uop-action-point;
+          /*input {
+            uses config-opm-input;
+          }
+          output {
+              uses config-opm-output;
+          }*/
+        }
+    }
+  }
+}
+
+
+

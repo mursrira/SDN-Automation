@@ -1,0 +1,41 @@
+<networks xmlns="http://cisco.com/ns/wae">
+    <network tags = "merge">
+        <name>{$NETWORK_NAME}</name>
+        <model>
+            <nodes>
+                <node>
+                    <name>{$SOURCE}</name>
+                    <lsps>
+                        <lsp>
+                            <name>{$LSP_NAME}</name>
+			                <destination>{$DESTINATION_LOOPBACK}</destination>
+                            <!--unresolved-destination>{$DESTINATION_LOOPBACK}</unresolved-destinatin-->
+                            <setup-pri>0</setup-pri>
+                            <hold-pri>0</hold-pri>
+                            <metric-type when="{$AUTO_ROUTE='true'}">auto-route</metric-type>
+                            <lsp-paths>
+                                <lsp-path>
+                                    <path-option>{$PATH_OPTION}</path-option>
+                                    <named-path>{$PATH_NAME}</named-path>
+                                    <type>rsvp</type>
+                                </lsp-path>
+                                <lsp-path>
+                                    <path-option>100</path-option>
+                                    <type>rsvp</type>
+                                </lsp-path>
+                            </lsp-paths>
+                            <description>{$DESCRIPTION}</description>
+                            <raw xmlns="http://cisco.com/ns/wae/lsp-raw">
+                                <tunnel-id>{$TUNNEL_ID}</tunnel-id>
+                                <load-interval>30</load-interval>
+                                <loop-back>0</loop-back>
+                            </raw>
+                        </lsp>
+                    </lsps>
+                </node>
+            </nodes>
+        </model>
+    </network>            
+
+</networks>
+

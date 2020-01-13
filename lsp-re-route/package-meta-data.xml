@@ -1,0 +1,21 @@
+<ncs-package xmlns="http://tail-f.com/ns/ncs-packages">
+  <name>lsp-re-route</name>
+  <package-version>1.0</package-version>
+  <description>Generated Python package</description>
+  <ncs-min-version>4.6</ncs-min-version>
+  <required-package>
+    <name>etisalat_utils</name>
+  </required-package>
+  <component>
+    <name>LspReRouterAction</name>
+    <application>
+      <python-class-name>lspReRouterAction.LspReRouterAction</python-class-name>
+    </application>
+  </component>
+  <component>
+    <name>fetchLspFwdClass</name>
+    <application>
+      <python-class-name>fetchLspFwdClass.FetchLspFwdClass</python-class-name>
+    </application>
+  </component>
+</ncs-package>

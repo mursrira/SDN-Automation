@@ -1,0 +1,151 @@
+// =========================================================================
+//                          SR-TE-BW-OPT YANG
+// =========================================================================
+ module delay-optimization {
+	/*belongs-to hybrid-optimizer {
+		prefix hybrid-optimizer;
+	}*/
+
+  namespace "http://cisco.com/ns/wae/opm/delay-optimization";
+
+  prefix "delay-optimization";
+
+  import lsp-common	 { prefix lsp-common; }
+  import ietf-yang-types { prefix yang; }
+  import tailf-common    { prefix tailf; }
+  import tailf-ncs       { prefix ncs; }
+  import cisco-wae       { prefix wae; }
+
+  organization "Cisco Systems";
+
+  description
+   "This is a python OPM module to Optimize SR Tunnels in network.";
+
+
+// =========================================================================
+// REVISION
+// =========================================================================
+  revision 2018-12-14 {
+   description
+    "version 1.0";
+  }
+
+  grouping config-opm-status {
+    container status {
+      leaf active {
+        tailf:info "True if the OPM is active";
+        type boolean;
+      }
+      leaf last-run {
+        tailf:info "Timestamp when the OPM was invoked last";
+        type yang:date-and-time;
+      }
+      leaf last-successful-run {
+        tailf:info "Timestamp of the OPM's last successful run";
+        type yang:date-and-time;
+      }
+    }
+  }
+
+  grouping config-opm-input-delay {
+    leaf post-delay-optimization-threshold{
+      tailf:info "Post Optimization Threshold";
+        type uint16 {
+          tailf:info "<0-120>;;Percentage of interface utilization";
+          range "1..120";
+        }   
+    }
+    list delay-lsps-to-be-optimized {
+        key "lspName lspSrcNode";
+        tailf:info "List of LSPs to be optimized";
+        uses lsp-common:lspKey;          
+    }   
+  }
+    /*
+    CREATED NEW grouping named lsp-common:lsp-with-out-path as it below structure is in similar to BW Optimization 
+    */
+
+  grouping config-opm-output {
+
+        leaf num-of-delay-sla-violated-vip-lsps-bfr{
+          tailf:info "Number of SLA Violated VIP LSPs before";
+          type string;
+        }
+        leaf num-of-delay-sla-violated-non-vip-lsps-bfr{
+          tailf:info "Number of SLA Violated non VIP LSPs before";
+          type string;
+        }
+        leaf num-of-delay-sla-violated-vip-lsps-aft{
+          tailf:info "Number of SLA Violated VIP LSPs after";
+          type string;
+        }
+        leaf num-of-delay-sla-violated-non-vip-lsps-aft{
+          tailf:info "Number of SLA Violated non VIP LSPs after";
+          type string;
+        }
+        leaf num-of-delay-rerouted-vip-lsps{
+          tailf:info "Number of Delay re-routed VIP LSPs";
+          type string;
+        }
+        leaf num-of-delay-rerouted-non-vip-lsps{
+          tailf:info "Number of Delay re-routed non VIP LSPs";
+          type string;
+        }
+        
+        list delay-sla-violated-lsps {
+            key "lspName lspSrcNode";
+            uses lsp-common:lsp-with-out-path;
+
+            container complete-path {
+                uses lsp-common:interface-keys;  
+            }
+            //NO Point in Having re-routed Path
+        }
+       list delay-re-routed-lsps {
+         key "lspName lspSrcNode";
+
+         //uses lsp-common:lspKey;
+         uses lsp-common:lsp-with-out-path;
+          
+          leaf prev-delay {
+            tailf:info "previous Delay";
+            type string;
+         }
+
+         container original-path {
+          uses lsp-common:lsp-path;  
+         }
+         container re-routed-opt-path {
+          uses lsp-common:lsp-path; 
+         }
+         
+
+       } 
+  }
+
+  augment "/wae:networks/wae:network/wae:opm" {
+    container delay-optimization {
+      tailf:info "A python OPM module to fetch all LSPs in network";
+
+      uses config-opm-status;
+
+      tailf:action run {
+        tailf:actionpoint delay-optimization-action-point;
+        input {
+          uses config-opm-input-delay;
+        }
+        output {
+          container optimization-results {
+            uses config-opm-output;
+          }        
+        }
+      }
+    }
+  }
+
+
+/// ========================================================================
+//                          EOF
+/// ========================================================================
+
+}

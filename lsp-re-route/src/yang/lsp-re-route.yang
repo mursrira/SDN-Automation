@@ -1,0 +1,143 @@
+module lsp-re-route {
+
+  namespace "http://example.com/lsp-re-route";
+  prefix lsp-re-route;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-common {
+    prefix tailf;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  description
+    "Action to re-route LSPs";
+
+  revision 2016-01-01 {
+    description
+      "Initial revision.";
+  }
+
+  container action {
+    tailf:action lsp-re-router {
+      tailf:actionpoint lsp-re-router-action-point;
+
+      input {
+
+	  leaf action-type {
+            	tailf:info "action-type (commit or dry-run)";
+		type enumeration {
+            	enum dry-run;
+            	enum commit;
+          	}
+		default "dry-run";
+		}
+
+	list te-interfaces {
+
+		key "srcNode te-name";
+		
+
+	leaf srcNode {
+
+		tailf:info "Name of the source node";
+		mandatory true;
+		type leafref {
+	        path "/ncs:devices/ncs:device/ncs:name";
+     		 }
+
+		}
+  	leaf operation-type {
+        	tailf:info "operation-type (create,re-route or delete)";
+        	type enumeration {
+            	enum created;
+            	enum re-routed;
+            	enum deleted;
+        	}
+        	default "re-routed";
+    	}
+
+	leaf te-name {
+                tailf:info "Name of the te-namenode";
+                type uint16;
+                }
+
+        leaf destNode {
+                tailf:info "IP Address of the Destination Node";
+		mandatory true;
+                type string;
+		}
+
+	leaf pathOption {
+                tailf:info "Path option number";
+		mandatory true;
+                type uint16;
+                }
+
+	leaf pathName {
+		tailf:info "Path Name";
+		type string;
+		}
+
+        list hop {
+
+                key step;
+
+                leaf step {
+                tailf:info "Step for the hop";
+		mandatory true;
+                type uint16;
+                }
+                                
+        leaf ipaddress {
+                tailf:info "Ipaddress of the next hop";
+		mandatory true;
+                type string;
+                     }
+                }	
+	}
+	
+	}
+
+	output {
+		leaf result {
+		tailf:info "Boolean flag for status of lsp configuration";
+      		type boolean;
+      		default false;
+		}
+        
+		leaf message {
+		tailf:info "Output string for lsp config details";
+      		type string;
+		}
+	}
+
+	}
+
+      }
+	
+  list lsp-re-route {
+    description "This is an RFS skeleton service";
+
+    key name;
+    leaf name {
+      tailf:info "Unique service id";
+      tailf:cli-allow-range;
+      type string;
+    }
+
+    uses ncs:service-data;
+    ncs:servicepoint lsp-re-route-servicepoint;
+
+    // may replace this with other ways of refering to the devices.
+    leaf device-name {
+      type leafref {
+        path "/ncs:devices/ncs:device/ncs:name";
+      }
+    }
+
+  }
+}

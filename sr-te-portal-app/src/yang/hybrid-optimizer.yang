@@ -1,0 +1,93 @@
+module hybrid-optimizer {
+namespace "http://cisco.com/ns/wae/opm/hybrid-optimizer";
+prefix hybrid-optimizer;
+
+import lsp-common	   { prefix lsp-common; }
+import ietf-yang-types { prefix yang; }
+import tailf-common	   { prefix tailf; }
+import tailf-ncs	   { prefix ncs; }
+import cisco-wae	   { prefix wae; }
+import delay-optimization	{ prefix delay-optimization; }
+import bandwidth-optimization	{ prefix bandwidth-optimization; }
+
+
+grouping output-result {
+		leaf result{
+			tailf:info "Result of optimization dry-run/commit";
+            type string;
+		}
+	}
+	
+grouping input-nso-action {
+        leaf action-type {
+                tailf:info "Boolean flag for dry run or commit";
+		 type enumeration {
+                enum dry-run;
+                enum commit;
+		enum force-commit;
+                }
+                default dry-run;
+        }
+        leaf configs{
+                tailf:info "Text field representing ShowConfig CLIs";
+                type string;
+        }
+}
+
+augment "/wae:networks/wae:network/wae:opm" {
+
+	container hybrid-optimizer {
+		tailf:action delay{
+			tailf:actionpoint optimizer-delay-action-point;
+
+			input {
+				uses delay-optimization:config-opm-input-delay;
+				uses input-nso-action;
+			}
+
+			output {
+				container delay-optimization-results {
+					uses delay-optimization:config-opm-output;
+				}
+				uses output-result;
+			}
+		}
+	   
+		tailf:action bandwidth {
+			tailf:actionpoint optimizer-bandwidth-action-point;
+			input {
+				uses bandwidth-optimization:config-opm-input;
+				uses input-nso-action;
+			}
+			
+			output {
+				container bandwidth-optimization-results {
+					uses bandwidth-optimization:config-opm-output{}
+					uses bandwidth-optimization:config-opm-congestion-output{}
+				}
+				uses output-result;
+			}
+		}
+		
+		tailf:action doBothDelayBandwidth {
+			tailf:actionpoint optimizer-delay-bandwidth-action-point;
+			input {
+				uses delay-optimization:config-opm-input-delay;
+				uses bandwidth-optimization:config-opm-input;
+				uses input-nso-action;
+			}
+			
+			output {
+				container delay-optimization-results {
+					uses delay-optimization:config-opm-output{}
+				}
+				container bandwidth-optimization-results {
+					uses bandwidth-optimization:config-opm-output{}
+					uses bandwidth-optimization:config-opm-congestion-output{}
+				}
+				uses output-result;
+		   }
+	 }
+}
+}
+}
