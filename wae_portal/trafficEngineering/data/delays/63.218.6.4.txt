@@ -1,0 +1,110 @@
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!C
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!
+!cr04.sjo01#environment no more
+!             ^
+!% Invalid input detected at '^' marker.
+!
+!cr04.sjo01#terminal length 0
+!cr04.sjo01#set cli screen-length 0
+!                ^
+!% Invalid input detected at '^' marker.
+!
+!cr04.sjo01#screen-length 0 temporary
+!            ^
+!% Invalid input detected at '^' marker.
+!
+!cr04.sjo01#show version
+!Cisco Internetwork Operating System Software 
+!IOS (tm) GS Software (C12KPRP-K4P-M), Version 12.0(32)SY6, RELEASE SOFTWARE (fc2)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2008 by cisco Systems, Inc.
+!Compiled Fri 02-May-08 12:42 by pwade
+!Image text-base: 0x00010000, data-base: 0x056A4000
+!
+!ROM: System Bootstrap, Version 12.0(20070523:115224) [knawani-CSCsi59917_32_sy 1.19dev(0.1)] DEVELOPMENT SOFTWARE
+!BOOTLDR: GS Software (C12KPRP-K4P-M), Version 12.0(32)SY6, RELEASE SOFTWARE (fc2)
+!
+! cr04.sjo01 uptime is 9 years, 22 weeks, 3 days, 16 hours, 53 minutes
+!Uptime for this control processor is 3 years, 41 weeks, 3 days, 18 hours, 40 minutes
+!System returned to ROM by Stateful Switchover at 03:51:58 GMT Fri Mar 4 2011
+!System restarted at 21:38:10 GMT Wed Oct 22 2014
+!System image file is "disk0:c12kprp-k4p-mz.120-32.SY6.bin"
+!
+!cisco 12410/PRP (MPC7457) processor (revision 0x00) with 3145728K bytes of memory.
+!MPC7457 CPU at 1263Mhz, Rev 1.1, 512KB L2, 2048KB L3 Cache
+!Last reset from power-on
+!Channelized E1, Version 1.0.
+!
+!2 Route Processor Cards
+!2 Clock Scheduler Cards
+!5 Switch Fabric Cards
+!4 T1/E1 BITS controllers
+!1 four-port OC48 POS controller (4 POS).
+!7 ISE 10G SPA Interface Cards (12000-SIP-601)
+!3 Ethernet/IEEE 802.3 interface(s)
+!4 10GigabitEthernet/IEEE 802.3 interface(s)
+!7 Packet over SONET network interface(s)
+!2043K bytes of non-volatile configuration memory.
+!
+!500472K bytes of ATA PCMCIA card at slot 0 (Sector size 512 bytes).
+!62720K bytes of ATA PCMCIA card at slot 1 (Sector size 512 bytes).
+!65536K bytes of Flash internal SIMM (Sector size 256K).
+!Configuration register is 0x2102
+!
+!cr04.sjo01#display software version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cr04.sjo01#display version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cr04.sjo01#terminal length 0
+!cr04.sjo01#ping 63.218.6.229
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.6.229, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!cr04.sjo01#ping 63.218.6.197
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.6.197, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr04.sjo01#ping 63.218.6.238
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.6.238, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms
+!cr04.sjo01#ping 63.218.6.242
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.6.242, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/9/12 ms
+!cr04.sjo01#ping 63.218.178.21
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.178.21, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr04.sjo01#ping 63.218.178.25
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.178.25, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr04.sjo01#
+!cr04.sjo01#exit

@@ -1,0 +1,105 @@
+!CC
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!CCC
+!This router uses the new ACS
+!(omit auth line)
+!(omit auth line)
+!Authentication succeeded. Your password will expire in 2 weeks + 5 days  + 1 hours  
+!
+!rr02.sjo01#environment no more
+!             ^
+!% Invalid input detected at '^' marker.
+!
+!rr02.sjo01#terminal length 0
+!rr02.sjo01#set cli screen-length 0
+!               ^
+!% Invalid input detected at '^' marker.
+!
+!rr02.sjo01#screen-length 0 temporary
+!            ^
+!% Invalid input detected at '^' marker.
+!
+!rr02.sjo01#show version
+!Cisco IOS XE Software, Version 03.16.08.S - Extended Support Release
+!Cisco IOS Software, ASR1000 Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 15.5(3)S8, RELEASE SOFTWARE (fc2)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2018 by Cisco Systems, Inc.
+!Compiled Wed 08-Aug-18 10:42 by mcpre
+!
+!
+!Cisco IOS-XE software, Copyright (c) 2005-2018 by cisco Systems, Inc.
+!All rights reserved.  Certain components of Cisco IOS-XE software are
+!licensed under the GNU General Public License ("GPL") Version 2.0.  The
+!software code licensed under GPL Version 2.0 is free software that comes
+!with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+!GPL code under the terms of GPL Version 2.0.  For more details, see the
+!documentation or "License Notice" file accompanying the IOS-XE software,
+!or the applicable URL provided on the flyer accompanying the IOS-XE
+!software.
+!
+!
+!ROM: IOS-XE ROMMON
+!
+!rr02.sjo01 uptime is 7 weeks, 11 hours, 4 minutes
+!Uptime for this control processor is 7 weeks, 11 hours, 5 minutes
+!System returned to ROM by reload at 22:55:14 GMT Tue Dec 4 2018
+!System restarted at 22:58:12 GMT Tue Dec 4 2018
+!System image file is "bootflash:asr1002x-universalk9.03.16.08.S.155-3.S8-ext.SPA.bin"
+!Last reload reason: Reload Command
+!
+!
+!
+!This product contains cryptographic features and is subject to United
+!States and local country laws governing import, export, transfer and
+!use. Delivery of Cisco cryptographic products does not imply
+!third-party authority to import, export, distribute or use encryption.
+!Importers, exporters, distributors and users are responsible for
+!compliance with U.S. and local country laws. By using this product you
+!agree to comply with applicable laws and regulations. If you are unable
+!to comply with U.S. and local laws, return this product immediately.
+!
+!A summary of U.S. laws governing Cisco cryptographic products may be found at:
+!http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+!
+!If you require further assistance please contact us by sending email to
+!export@cisco.com.
+!
+!License Level: advipservices
+!License Type: Permanent
+!Next reload license Level: advipservices
+!
+!cisco ASR1002-X (2RU-X) processor (revision 2KP) with 3420819K/6147K bytes of memory.
+!Processor board ID FOX1920GDLG
+!6 Gigabit Ethernet interfaces
+!2 Ten Gigabit Ethernet interfaces
+!32768K bytes of non-volatile configuration memory.
+!16777216K bytes of physical memory.
+!6684671K bytes of eUSB flash at bootflash:.
+!
+!Configuration register is 0x2102
+!
+!rr02.sjo01#display software version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!rr02.sjo01#display version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!rr02.sjo01#terminal length 0
+!rr02.sjo01#ping 63.223.60.49
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.60.49, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/3/4 ms
+!rr02.sjo01#ping 63.223.60.53
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.60.53, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/3/4 ms
+!rr02.sjo01#
+!rr02.sjo01#exit

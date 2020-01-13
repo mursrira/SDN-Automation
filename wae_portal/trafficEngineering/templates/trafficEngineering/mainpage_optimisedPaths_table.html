@@ -1,0 +1,234 @@
+<!--DOCTYPE html>
+<html-->
+
+<script>
+function tryDeviceConfig(btn,isCommitAction)
+{
+pathID = btn.id.split('-')[1];
+selectedPath = document.getElementById('path-'+pathID).value;
+//alert(selectedPath);
+selectedLsp = document.getElementById('lspKey').value+":::"+pathID;
+selectedAutoRoute = document.getElementById('autoRoute').checked;
+url = '/getShowConfig';
+
+
+//data="interface Tunnel177\nno description   TE_Portal_Tunnel_To_PE-3\nno bandwidth 10000000\nno ip unnumbered Loopback0\nno load-interval 30\nno shutdown\nno tunnel destination 192.168.0.11\nno tunnel mpls traffic-eng priority 0 0\nno tunnel mpls traffic-eng path-option 10 explicit name vishal7_1-P-1-PE-3-10 lockdown\nno tunnel mpls traffic-eng path-option 100 dynamic\nno tunnel mpls traffic-eng record-route\nno tunnel mode mpls traffic-eng\nexit\nno interface Tunnel177\ninterface Tunnel123\ntunnel mode mpls traffic-eng\ntunnel mpls traffic-eng priority 0 0\ntunnel mpls traffic-eng path-option 10 explicit name vishal7_1-P-1-PE-3-10 lockdown\ntunnel mpls traffic-eng path-option 100 dynamic\ntunnel mpls traffic-eng record-route\ndescription   'TE_Portal_Tunnel_To_PE-3'\nbandwidth 10000000\nip unnumbered Loopback0\nload-interval 30\nno shutdown\ntunnel destination 192.168.0.11\nexit";
+//$('#DeviceConfTable').empty();
+//$('#DeviceConfTable').append('<textarea class="form-control" rows=10 readonly>'+data+'</textarea>');
+
+if(isCommitAction)	
+//	return;
+	url = '/pushApplyConfig';
+
+        $("#content #LSPinputbox").children().prop('disabled','true');
+        $("#GetOptPaths").prop('disabled',true);
+	$("#content #OptPathsTable #PathTable").find(":input").prop('disabled',true);
+	$( "#loading" ).show();
+        $('#DeviceConfTable').empty();
+        $.ajax({
+                        //async: false,
+                        method: 'POST',
+                        url: url,
+                        data: {'completepath':selectedPath,'lsp': selectedLsp,'autoRoute':selectedAutoRoute},
+                        success: function (data) {
+                          //alert(data);
+                          $('#DeviceConfTable').empty();
+                          $('#DeviceConfTable').append('<textarea id="config-txt" class="form-control" rows=10 readonly>'+data+'</textarea>');
+                          $('#DeviceConfTable').append('<br>')
+			  $('#DeviceConfTable').append('<button id="copy-btn" class="btn btn-default" onclick="copyFunction()">Copy Config</button>');
+			  $("#content *").children().prop('disabled',false);
+                          $( "#loading" ).hide();
+                        },
+                        error: function(data){
+                          $("#content *").children().prop('disabled',false);
+                          $( "#loading" ).hide();
+			  if(data.status == 403){
+                                alert("User Session Expired, Please re-login");
+                                window.location="logout";
+                          }else if(data.status == 0){
+                                alert("Server is no more reachable. Make sure its running and reachable");
+                          }else{
+                                alert(data.responseText);
+                          }
+                        },
+                });
+}
+
+function copyFunction() {
+  /* Get the text field */
+  var copyText = document.getElementById("config-txt");
+
+  /* Select the text field */
+  copyText.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("Copy");
+
+  /* Alert the copied text */
+  //alert("Copied the text: " + copyText.value);
+}
+
+function excludeClicked(chkbx){
+	ex_crts = document.getElementById('excl-crt').value;
+
+	if(chkbx.checked){
+		rows = ex_crts.split('\n');
+		len = rows.length;
+		for (index = 0; index < len; ++index) {
+			if(chkbx.value == rows[index]){
+				return;
+			}
+		}
+		document.getElementById('excl-crt').value = chkbx.value+'\n'+ex_crts;
+		all_chk = $("#content #OptPathsTable #PathTable :checkbox");
+		len = all_chk.length;
+		for (index = 0; index < len; ++index) {
+			if(chkbx.value == all_chk[index].value){
+				all_chk[index].checked = true;
+			}
+		}
+		document.getElementById('exludeCrts').checked = true;
+	}else{
+		new_ex_ctrs = ""
+		rows = ex_crts.split('\n');
+		len = rows.length;
+		for (index = 0; index < len; ++index) {
+			if(chkbx.value != rows[index]){
+				new_ex_ctrs = new_ex_ctrs + rows[index] + "\n";
+			}else{
+				len--;
+			}
+		}
+		document.getElementById('excl-crt').value = new_ex_ctrs;
+		all_chk = $("#content #OptPathsTable #PathTable :checkbox");
+		len = all_chk.length;
+		for (index = 0; index < len; ++index) {
+			if(chkbx.value == all_chk[index].value){
+				all_chk[index].checked = false;
+			}
+		}
+	}
+}
+
+</script>
+<!--Table for Displaying Optmised Paths for Specific LSP-->
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+       th, td {
+            min-width: 105px;
+        } 
+        
+        #constrainer2 table {
+            overflow-y: scroll;
+	    font-family: arial, sans-serif;
+	
+        }
+        #constrainer2 tbody {
+            overflow-y: scroll;
+            display: block;
+            height: 170px;
+        }
+        #constrainer2 thead {
+            display: table-row;
+        }
+        /* only styling below here */
+        
+         table {
+            border-collapse: collapse;
+	    width: 100px;
+        }
+        th, td {
+            border: 1px solid white;
+	    font-size: 70%; 
+          text-align: center;
+	}
+
+        th {
+            
+            border-width: 1px;
+        }
+        td {
+            border-width: 1px;
+        }
+        tr:first-child td {
+            border-top-width: 0;
+        }
+	tr:nth-child(even) {
+            background-color: #eee;
+	    color: #000;
+	    border: 1px solid black;
+        }
+       
+    </style>
+</head>
+<body>
+
+<div id="ExclusionTextbox">
+Circuits to Exclude (one per line), Format- SrcNode:SrcIf::DestNode:DestIf<br>
+<textarea id="excl-crt" class="form-control" rows=5 style="width:830px">{{excludeCircuits}}</textarea>
+</div>
+<br>
+<!--h3>No nested divs</h3-->
+<div id="PathTable">
+    <table>
+        <thead>
+		
+                         <th>Step</th>
+                         <th>Local Node</th>
+                         <th>Local IF_IP</th>
+                         <th>Local IF_Name</th>
+                         <th>Remote Node</th>
+                         <th>Remote IF_Name</th>
+                         <th>Remote IP</th>
+        				 <th>Delay</th>
+        </thead>
+        <tbody>
+		
+
+                         {% for lspOptPath in lspOptPaths %}
+                          <tr> <td colspan="8"><font size="1.5">
+    			  PATH - {{ forloop.counter }} &nbsp;&nbsp;&nbsp; (DELAY: {{lspOptPath.latency}})
+			   </td></tr>
+                          {% for optPathHop in lspOptPath.hop %}
+                                <tr>
+                                        <td><input value='{{optPathHop.local_node}}:{{optPathHop.local_ifname}}::{{optPathHop.remote_node}}:{{optPathHop.remote_ifname}}' type='checkbox' onclick="excludeClicked(this);"/>&nbsp;&nbsp;{{optPathHop.step}}</td>
+                                        <td>{{optPathHop.local_node}}</td>
+                                        <td>{{optPathHop.local_ifipadd}}</td>
+                                        <td>{{optPathHop.local_ifname}}</td>
+                                        <td>{{optPathHop.remote_node}}</td>
+                                        <td>{{optPathHop.remote_ifname}}</td>
+                                        <td>{{optPathHop.remote_ifipadd}}</td> 
+                                        <td>{{optPathHop.latency}}</td> 
+                                </tr>
+                        {% endfor %}
+			<tr>
+			  <td colspan="8">
+			    <font size="1.5">
+			      <input type="text" name="path-{{forloop.counter}}" id="path-{{forloop.counter}}" hidden value="{{lspOptPath}}"></input> 
+                              <button id='show-{{forloop.counter}}' class="btn btn-default" style="visibility: visible;font-size:9px;height:15px;width:65px;padding:0px;" onclick="tryDeviceConfig(this,false)">Show-Config</button> 
+			      
+                              <button id='apply-{{forloop.counter}}' class="btn btn-default" style="visibility: visible;font-size:9px;height:15px;width:65px;padding:0px;" onclick="tryDeviceConfig(this,true)">Apply-Config</button> 
+			    </font>
+			  </td>
+			</tr>
+
+			<td colspan="8"><font size="1.5">&nbsp;</td></tr>
+                              <!--button class="btn btn-default" style="visibility: visible;font-size:9px;height:15px;width:65px;padding:0px;" onclick="alert('Provisioned LSP!')">Commit</button> </td></tr-->
+                        {% endfor %}
+
+
+
+                  
+
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
+<br>
+

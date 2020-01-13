@@ -1,0 +1,151 @@
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!*                                                                         *
+!*      EEEEE  OOO  L           RRRR   OOO  U   U TTTTT EEEEE RRRR         *
+!*      E     O   O L           R   R O   O U   U   T   E     R   R        *
+!*      EEEE  O   O L           RRRR  O   O U   U   T   EEEE  RRRR         *
+!*      E     O   O L           R  R  O   O U   U   T   E     R  R         *
+!*      EEEEE  OOO  LLLLL       R   R  OOO   UUU    T   EEEEE R   R        *
+!*                                                                         *
+!*             Do not provision new services on this device!               *
+!***************************************************************************
+!C
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!Authentication succeeded. Your password will expire in 2 weeks + 5 days  + 1 hours 
+!
+!cr02.hkg05#environment no more
+!             ^
+!% Invalid input detected at '^' marker.
+!
+!cr02.hkg05#terminal length 0
+!cr02.hkg05#set cli screen-length 0
+!                ^
+!% Invalid input detected at '^' marker.
+!
+!cr02.hkg05#screen-length 0 temporary
+!            ^
+!% Invalid input detected at '^' marker.
+!
+!cr02.hkg05#show version
+!Cisco Internetwork Operating System Software 
+!IOS (tm) GS Software (C12KPRP-K4P-M), Version 12.0(32)SY6, RELEASE SOFTWARE (fc2)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2008 by cisco Systems, Inc.
+!Compiled Fri 02-May-08 12:42 by pwade
+!Image text-base: 0x00010000, data-base: 0x056A4000
+!
+!ROM: System Bootstrap, Version 12.0(20041108:104740) [ashp-cisp-rommon 1.16dev(0.1)] DEVELOPMENT SOFTWARE
+!BOOTLDR: GS Software (C12KPRP-K4P-M), Version 12.0(32)SY6, RELEASE SOFTWARE (fc2)
+!
+! cr02.hkg05 uptime is 7 years, 3 weeks, 20 hours, 49 minutes
+!Uptime for this control processor is 7 years, 3 weeks, 1 day, 8 hours, 27 minutes
+!System returned to ROM by reload at 20:43:46 GMT Sat May 23 2009
+!System restarted at 13:13:21 GMT Tue Jan 3 2012
+!System image file is "disk0:c12kprp-k4p-mz.120-32.SY6.bin"
+!
+!cisco 12416/PRP (MPC7455) processor (revision 0x00) with 1048576K bytes of memory.
+!MPC7455 CPU at 665Mhz, Rev 2.1, 256KB L2, 2048KB L3 Cache
+!Last reset from power-on
+!
+!1 Route Processor Card
+!2 Clock Scheduler Cards
+!3 Switch Fabric Cards
+!2 four-port OC48 POS controllers (8 POS).
+!2 ISE 10G SPA Interface Cards (12000-SIP-601)
+!2 Ethernet/IEEE 802.3 interface(s)
+!8 FastEthernet/IEEE 802.3 interface(s)
+!1 10GigabitEthernet/IEEE 802.3 interface(s)
+!4 Serial network interface(s)
+!24 Packet over SONET network interface(s)
+!2043K bytes of non-volatile configuration memory.
+!
+!62720K bytes of ATA PCMCIA card at slot 0 (Sector size 512 bytes).
+!62976K bytes of ATA PCMCIA card at slot 1 (Sector size 512 bytes).
+!65536K bytes of Flash internal SIMM (Sector size 256K).
+!Configuration register is 0x2102
+!
+!WARNING: Old fab-loader in slot 11; use "upgrade fabric-downloader" to update
+!cr02.hkg05#display software version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cr02.hkg05#display version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cr02.hkg05#terminal length 0
+!cr02.hkg05#ping 63.218.214.70
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.214.70, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/33/100 ms
+!cr02.hkg05#ping 63.218.144.141
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.144.141, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr02.hkg05#ping 63.218.144.69
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.144.69, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!cr02.hkg05#ping 63.218.144.210
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.144.210, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!cr02.hkg05#ping 63.218.214.78
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.214.78, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 24/115/252 ms
+!cr02.hkg05#ping 63.218.144.138
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.144.138, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/62/148 ms
+!cr02.hkg05#ping 63.218.144.162
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.144.162, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/43/96 ms
+!cr02.hkg05#ping 203.91.156.166
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 203.91.156.166, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/96/236 ms
+!cr02.hkg05#ping 63.218.144.154
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.144.154, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 24/48/72 ms
+!cr02.hkg05#ping 63.218.144.65
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.144.65, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr02.hkg05#ping 63.218.144.233
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.144.233, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr02.hkg05#
+!cr02.hkg05#exit

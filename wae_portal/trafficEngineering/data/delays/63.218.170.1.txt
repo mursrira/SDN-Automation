@@ -1,0 +1,108 @@
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!*                                                                         *
+!*      EEEEE  OOO  L           RRRR   OOO  U   U TTTTT EEEEE RRRR         *
+!*      E     O   O L           R   R O   O U   U   T   E     R   R        *
+!*      EEEE  O   O L           RRRR  O   O U   U   T   EEEE  RRRR         *
+!*      E     O   O L           R  R  O   O U   U   T   E     R  R         *
+!*      EEEEE  OOO  LLLLL       R   R  OOO   UUU    T   EEEEE R   R        *
+!*                                                                         *
+!*             Do not provision new services on this device!               *
+!***************************************************************************
+!C
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!
+!cr01.bkk01#environment no more
+!             ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.bkk01#terminal length 0
+!cr01.bkk01#set cli screen-length 0
+!                ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.bkk01#screen-length 0 temporary
+!            ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.bkk01#show version
+!Cisco Internetwork Operating System Software 
+!IOS (tm) GS Software (C12KPRP-K3P-M), Version 12.0(30)S5, RELEASE SOFTWARE (fc1)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2006 by cisco Systems, Inc.
+!Compiled Fri 17-Feb-06 13:47 by tinhuang
+!Image text-base: 0x00010000, data-base: 0x03E70000
+!
+!ROM: System Bootstrap, Version 12.0(20041108:104740) [ashp-cisp-rommon 1.16dev(0.1)] DEVELOPMENT SOFTWARE
+!BOOTLDR: GS Software (C12KPRP-K3P-M), Version 12.0(30)S5, RELEASE SOFTWARE (fc1)
+!
+! cr01.bkk01 uptime is 11 years, 8 weeks, 1 day, 14 hours, 3 minutes
+!Uptime for this control processor is 7 years, 10 weeks, 36 minutes
+!System returned to ROM by Stateful Switchover at 11:48:00 UTC Thu Aug 16 2007
+!System restarted at 19:02:04 GMT Mon Sep 5 2011
+!System image file is "disk0:c12kprp-k3p-mz.120-30.S5.bin"
+!
+!cisco 12016/PRP (MPC7450) processor (revision 0x00) with 1048576K bytes of memory.
+!MPC7450 CPU at 665Mhz, Rev 2.1, 256KB L2, 2048KB L3 Cache
+!Last reset from unexpected value
+!
+!2 Route Processor Cards
+!2 Clock Scheduler Cards
+!3 Switch Fabric Cards
+!1 16-port OC3 POS controller (16 POS).
+!1 four-port OC12 POS controller (4 POS).
+!1 six-port DS3 controller (6 DS3).
+!2 Three Port Gigabit Ethernet/IEEE 802.3z controllers (6 GigabitEthernet).
+!1 eight-port FastEthernet/IEEE 802.3u controller (8 FastEthernet).
+!2 Ethernet/IEEE 802.3 interface(s)
+!8 FastEthernet/IEEE 802.3 interface(s)
+!6 GigabitEthernet/IEEE 802.3 interface(s)
+!20 Packet over SONET network interface(s)
+!2043K bytes of non-volatile configuration memory.
+!
+!62976K bytes of ATA PCMCIA card at slot 0 (Sector size 512 bytes).
+!65536K bytes of Flash internal SIMM (Sector size 256K).
+!Configuration register is 0x2102
+!
+!cr01.bkk01#display software version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.bkk01#display version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.bkk01#terminal length 0
+!cr01.bkk01#ping 63.218.170.158
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.170.158, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!cr01.bkk01#ping 63.218.170.170
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.170.170, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr01.bkk01#ping 63.218.170.98
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.170.98, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!cr01.bkk01#ping 63.218.170.90
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.170.90, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr01.bkk01#
+!cr01.bkk01#exit

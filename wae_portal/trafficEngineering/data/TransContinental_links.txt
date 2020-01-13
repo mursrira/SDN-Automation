@@ -1,0 +1,6 @@
+<SRC_NODE>:<SRC_INTERFACE>::<DEST_NODE>:<DEST_INTERFACE>
+cr03.lax05.pccwbtn.net:TenGigE0/7/0/10::cr04.hkg04.pccwbtn.net:TenGigE0/4/0/6
+PE-1:GigabitEthernet0/1::PE-2:GigabitEthernet0/1
+ENT1Sat-1:GigabitEthernet0/1::PE-2:GigabitEthernet0/5
+#cr03.lax05.pccwbtn.net:TenGigE0/7/0/10::cr04.hkg04.pccwbtn.net:TenGigE0/4/0/6
+#cr05.ldn01.pccwbtn.net:TenGigE0/0/2/0::cr05.nyc02.pccwbtn.net:TenGigE0/1/0/0

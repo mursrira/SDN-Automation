@@ -1,0 +1,62 @@
+!Cisco IOS XR Software
+!
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!
+!
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!
+!
+!RP/0/RSP0/CPU0:br01.frf08#terminal length 0
+!Sun Dec  2 10:02:39.455 GMT
+!RP/0/RSP0/CPU0:br01.frf08#ping 63.223.61.109
+Sun Dec  2 10:02:40.079 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.61.109, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:br01.frf08#ping 63.223.13.93
+Sun Dec  2 10:02:41.868 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.13.93, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms
+!RP/0/RSP0/CPU0:br01.frf08#ping 63.223.13.137
+Sun Dec  2 10:02:43.696 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.13.137, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/3 ms
+!RP/0/RSP0/CPU0:br01.frf08#ping 63.223.61.105
+Sun Dec  2 10:02:45.515 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.61.105, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:br01.frf08#ping 63.218.230.138
+Sun Dec  2 10:02:47.345 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.230.138, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:br01.frf08#ping 63.223.61.117
+Sun Dec  2 10:02:49.238 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.61.117, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:br01.frf08#ping 63.223.61.113
+Sun Dec  2 10:02:51.039 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.61.113, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:br01.frf08#
+!RP/0/RSP0/CPU0:br01.frf08#exit

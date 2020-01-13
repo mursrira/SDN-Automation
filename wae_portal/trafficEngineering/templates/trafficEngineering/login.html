@@ -1,0 +1,24 @@
+{% extends "trafficEngineering/header.html" %}
+{% block content %}
+
+<div class="col-md-12" style="padding-top:120px;">
+    <h1 class="text-center" style="font-size: 36px;">WAE Engineering Portal</h1>
+  </div>
+  <div class="col-md-12" style="text-align: center;">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 col-xs-12 col-sm-12" style="padding-top: 40px;">
+
+<!--This is a comment.For Login Page -->
+
+    <form id="login" name="login" action="login" method="post">
+      <input type="text" name="user" placeholder="Username" class="form-control" id="user"><br>
+      <input type="password" name="pass" placeholder="Password" class="form-control" id="password"><br>
+        <input class="btn btn-default" type="submit" value="Login">
+    </form>
+
+  </div>
+</div>
+<div></div>
+{%include "trafficEngineering/includes/htmlsnippet.html" %}
+
+{% endblock %}

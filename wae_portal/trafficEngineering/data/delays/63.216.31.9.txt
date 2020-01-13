@@ -1,0 +1,101 @@
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!C
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!
+!br01.atl01#environment no more
+!Translating "environment"...domain server (63.221.246.95)
+!
+!Translating "environment"...domain server (63.221.246.95)
+!
+!% Bad IP address or host name% Unknown command or computer name, or unable to find computer address
+!br01.atl01#terminal length 0
+!br01.atl01#set cli screen-length 0
+!               ^
+!% Invalid input detected at '^' marker.
+!
+!br01.atl01#screen-length 0 temporary
+!            ^
+!% Invalid input detected at '^' marker.
+!
+!br01.atl01#show version
+!Cisco IOS Software, c7600s72033_rp Software (c7600s72033_rp-ADVIPSERVICESK9-M), Version 12.2(33)SRE9, RELEASE SOFTWARE (fc2)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2013 by Cisco Systems, Inc.
+!Compiled Fri 06-Sep-13 04:56 by prod_rel_team
+!
+!ROM: System Bootstrap, Version 12.2(17r)S4, RELEASE SOFTWARE (fc1)
+!BOOTLDR: Cisco IOS Software, c7600s72033_rp Software (c7600s72033_rp-ADVIPSERVICESK9-M), Version 12.2(33)SRE9, RELEASE SOFTWARE (fc2)
+!
+!br01.atl01 uptime is 1 year, 43 weeks, 3 days, 4 hours, 19 minutes
+!Uptime for this control processor is 1 year, 43 weeks, 3 days, 3 hours, 46 minutes
+!System returned to ROM by reload at 04:44:51 PDT Thu Jun 22 2006 (SP by reload)
+!System restarted at 06:07:09 GMT Wed Nov 2 2016
+!System image file is "disk0:c7600s72033-advipservicesk9-mz.122-33.SRE9.bin"
+!Last reload type: Normal Reload
+!
+!
+!This product contains cryptographic features and is subject to United
+!States and local country laws governing import, export, transfer and
+!use. Delivery of Cisco cryptographic products does not imply
+!third-party authority to import, export, distribute or use encryption.
+!Importers, exporters, distributors and users are responsible for
+!compliance with U.S. and local country laws. By using this product you
+!agree to comply with applicable laws and regulations. If you are unable
+!to comply with U.S. and local laws, return this product immediately.
+!
+!A summary of U.S. laws governing Cisco cryptographic products may be found at:
+!http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+!
+!If you require further assistance please contact us by sending email to
+!export@cisco.com.
+!
+!cisco CISCO7606 (R7000) processor (revision 1.0) with 983008K/65536K bytes of memory.
+!Processor board ID FOX104612K0
+!SR71000 CPU at 600MHz, Implementation 1284, Rev 1.2, 512KB L2 Cache
+!Last reset from s/w reset
+!5 Virtual Ethernet interfaces
+!66 Gigabit Ethernet interfaces
+!12 Ten Gigabit Ethernet interfaces
+!1917K bytes of non-volatile configuration memory.
+!8192K bytes of packet buffer memory.
+!
+!65536K bytes of Flash internal SIMM (Sector size 512K).
+!Configuration register is 0x2102
+!
+!br01.atl01#display software version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!br01.atl01#display version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!br01.atl01#terminal length 0
+!br01.atl01#ping 63.216.31.113
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.216.31.113, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!br01.atl01#ping 63.218.68.73
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.68.73, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!br01.atl01#ping 63.216.31.109
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.216.31.109, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!br01.atl01#
+!br01.atl01#exit

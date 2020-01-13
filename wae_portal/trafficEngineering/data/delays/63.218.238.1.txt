@@ -1,0 +1,85 @@
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!C
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!
+!ar01.ldn05#environment no more
+!             ^
+!% Invalid input detected at '^' marker.
+!
+!ar01.ldn05#terminal length 0
+!ar01.ldn05#set cli screen-length 0
+!                ^
+!% Invalid input detected at '^' marker.
+!
+!ar01.ldn05#screen-length 0 temporary
+!            ^
+!% Invalid input detected at '^' marker.
+!
+!ar01.ldn05#show version
+!Cisco Internetwork Operating System Software 
+!IOS (tm) GS Software (C12KPRP-K4P-M), Version 12.0(32)SY11, RELEASE SOFTWARE (fc2)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2010 by cisco Systems, Inc.
+!Compiled Tue 23-Mar-10 13:28 by alnguyen
+!Image text-base: 0x00010000, data-base: 0x056D2000
+!
+!ROM: System Bootstrap, Version 12.0(20080619:121934) [gradhakr-sq86358 1.20dev(0.1)] DEVELOPMENT SOFTWARE
+!BOOTLDR: GS Software (C12KPRP-K4P-M), Version 12.0(32)SY11, RELEASE SOFTWARE (fc2)
+!
+! ar01.ldn05 uptime is 6 years, 9 weeks, 1 day, 14 hours, 43 minutes
+!Uptime for this control processor is 6 years, 9 weeks, 1 day, 12 hours, 31 minutes
+!System returned to ROM by Stateful Switchover at 11:15:31 GMT Thu Aug 9 2012
+!System restarted at 19:19:34 GMT Tue Aug 21 2012
+!System image file is "disk0:c12kprp-k4p-mz.120-32.SY11.bin"
+!
+!cisco 12410/PRP (MPC7457) processor (revision 0x00) with 2097152K bytes of memory.
+!MPC7457 CPU at 1263Mhz, Rev 1.2, 512KB L2, 2048KB L3 Cache
+!Last reset from power-on
+!Channelized E1, Version 1.0.
+!
+!2 Route Processor Cards
+!2 Clock Scheduler Cards
+!5 Switch Fabric Cards
+!4 T1/E1 BITS controllers
+!3 ISE 10G SPA Interface Cards (12000-SIP-601)
+!3 Ethernet/IEEE 802.3 interface(s)
+!5 GigabitEthernet/IEEE 802.3 interface(s)
+!2 10GigabitEthernet/IEEE 802.3 interface(s)
+!90 Packet over SONET network interface(s)
+!2043K bytes of non-volatile configuration memory.
+!
+!1000944K bytes of ATA PCMCIA card at slot 0 (Sector size 512 bytes).
+!65536K bytes of Flash internal SIMM (Sector size 256K).
+!Configuration register is 0x2102
+!
+!ar01.ldn05#display software version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!ar01.ldn05#display version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!ar01.ldn05#terminal length 0
+!ar01.ldn05#ping 63.218.238.38
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.238.38, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/3/4 ms
+!ar01.ldn05#ping 63.218.238.34
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.238.34, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/6/20 ms
+!ar01.ldn05#
+!ar01.ldn05#exit

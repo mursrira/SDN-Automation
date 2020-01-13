@@ -1,0 +1,45 @@
+!Cisco IOS XR Software
+!
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!
+!
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!Authentication succeeded. Your password will expire in 2 weeks + 5 days  + 1 hours 
+!
+!
+!RP/0/RSP0/CPU0:br03.hkg15#terminal length 0
+!Wed Jan 23 10:02:34.461 GMT
+!RP/0/RSP0/CPU0:br03.hkg15#ping 63.223.17.161
+Wed Jan 23 10:02:34.746 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.17.161, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:br03.hkg15#ping 63.223.15.209
+Wed Jan 23 10:02:36.580 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.15.209, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:br03.hkg15#ping 63.218.210.137
+Wed Jan 23 10:02:38.303 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.210.137, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:br03.hkg15#ping 63.223.17.49
+Wed Jan 23 10:02:39.994 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.17.49, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/3 ms
+!RP/0/RSP0/CPU0:br03.hkg15#
+!RP/0/RSP0/CPU0:br03.hkg15#exit

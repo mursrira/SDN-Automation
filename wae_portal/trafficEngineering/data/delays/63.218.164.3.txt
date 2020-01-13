@@ -1,0 +1,273 @@
+!Cisco IOS XR Software
+!
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!
+!
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!Authentication succeeded. Your password will expire in 2 weeks + 5 days  + 1 hours 
+!
+!
+!RP/0/RSP0/CPU0:cr03.sin02#terminal length 0
+!Wed Jan 23 10:02:42.078 GMT
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.28.45
+Wed Jan 23 10:02:42.468 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.28.45, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/12/14 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.16.45
+Wed Jan 23 10:02:43.800 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.16.45, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/30/31 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.53.37
+Wed Jan 23 10:02:45.245 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.53.37, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 11/11/12 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.46
+Wed Jan 23 10:02:46.565 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.46, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 34/34/35 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.29.233
+Wed Jan 23 10:02:47.990 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.29.233, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 45/46/48 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.17.173
+Wed Jan 23 10:02:49.484 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.17.173, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 32/32/33 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.23.37
+Wed Jan 23 10:02:50.908 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.23.37, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 94/94/95 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.190
+Wed Jan 23 10:02:52.712 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.190, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.78
+Wed Jan 23 10:02:53.986 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.78, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.142
+Wed Jan 23 10:02:55.287 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.142, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/3 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.122
+Wed Jan 23 10:02:56.552 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.122, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/3 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.122.53
+Wed Jan 23 10:02:57.826 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.122.53, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/30/30 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.146
+Wed Jan 23 10:02:59.252 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.146, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 35/35/36 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.194
+Wed Jan 23 10:03:00.697 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.194, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 38/38/39 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.18
+Wed Jan 23 10:03:02.159 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.18, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 34/34/35 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.162.33
+Wed Jan 23 10:03:03.602 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.162.33, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.62.22
+Wed Jan 23 10:03:04.874 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.62.22, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 137/137/137 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.62.46
+Wed Jan 23 10:03:06.838 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.62.46, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 132/132/133 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.180.45
+Wed Jan 23 10:03:08.781 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.180.45, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 11/11/12 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.182
+Wed Jan 23 10:03:10.124 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.182, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.170
+Wed Jan 23 10:03:11.423 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.170, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 33/34/36 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.146.241
+Wed Jan 23 10:03:12.913 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.146.241, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 67/67/68 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.80.38
+Wed Jan 23 10:03:14.542 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.80.38, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 190/191/192 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.198
+Wed Jan 23 10:03:16.794 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.198, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.248.37
+Wed Jan 23 10:03:18.119 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.248.37, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.66
+Wed Jan 23 10:03:19.392 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.66, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.70
+Wed Jan 23 10:03:20.669 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.70, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.214
+Wed Jan 23 10:03:21.952 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.214, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.16.157
+Wed Jan 23 10:03:23.244 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.16.157, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 66/66/67 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.31.197
+Wed Jan 23 10:03:24.860 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.31.197, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 37/37/38 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.178
+Wed Jan 23 10:03:26.341 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.178, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.182
+Wed Jan 23 10:03:27.596 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.182, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.166
+Wed Jan 23 10:03:28.912 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.166, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 34/35/37 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.74
+Wed Jan 23 10:03:30.372 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.74, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.142
+Wed Jan 23 10:03:31.663 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.142, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.114
+Wed Jan 23 10:03:32.983 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.114, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.62.10
+Wed Jan 23 10:03:34.283 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.62.10, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 136/136/137 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.110
+Wed Jan 23 10:03:36.240 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.110, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.118
+Wed Jan 23 10:03:37.544 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.118, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.198
+Wed Jan 23 10:03:38.839 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.198, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.218.228.42
+Wed Jan 23 10:03:40.127 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.228.42, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 38/39/40 ms
+!RP/0/RSP0/CPU0:cr03.sin02#ping 63.223.34.122
+Wed Jan 23 10:03:41.626 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.34.122, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 32/32/33 ms
+!RP/0/RSP0/CPU0:cr03.sin02#
+!RP/0/RSP0/CPU0:cr03.sin02#exit

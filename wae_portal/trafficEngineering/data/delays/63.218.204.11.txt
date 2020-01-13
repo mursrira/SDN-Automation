@@ -1,0 +1,96 @@
+!CC
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!CC
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!
+!cgn01.hkg08#environment no more
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cgn01.hkg08#terminal length 0
+!cgn01.hkg08#set cli screen-length 0
+!                ^
+!% Invalid input detected at '^' marker.
+!
+!cgn01.hkg08#screen-length 0 temporary
+!             ^
+!% Invalid input detected at '^' marker.
+!
+!cgn01.hkg08#show version
+!Cisco IOS XE Software, Version 03.10.02.S - Extended Support Release
+!Cisco IOS Software, ASR1000 Software (X86_64_LINUX_IOSD-ADVIPSERVICESK9-M), Version 15.3(3)S2, RELEASE SOFTWARE (fc3)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2014 by Cisco Systems, Inc.
+!Compiled Fri 31-Jan-14 20:28 by mcpre
+!
+!
+!Cisco IOS-XE software, Copyright (c) 2005-2014 by cisco Systems, Inc.
+!All rights reserved.  Certain components of Cisco IOS-XE software are
+!licensed under the GNU General Public License ("GPL") Version 2.0.  The
+!software code licensed under GPL Version 2.0 is free software that comes
+!with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+!GPL code under the terms of GPL Version 2.0.  For more details, see the
+!documentation or "License Notice" file accompanying the IOS-XE software,
+!or the applicable URL provided on the flyer accompanying the IOS-XE
+!software.
+!
+!
+!ROM: IOS-XE ROMMON
+!
+!cgn01.hkg08 uptime is 2 years, 8 weeks, 4 days, 19 hours, 58 minutes
+!Uptime for this control processor is 2 years, 8 weeks, 4 days, 20 hours, 0 minutes
+!System returned to ROM by reload at 14:01:14 GMT Wed Aug 24 2016
+!System restarted at 14:04:25 GMT Wed Aug 24 2016
+!System image file is "bootflash:asr1000rp2-advipservicesk9.03.10.02.S.153-3.S2-ext.bi"
+!Last reload reason: Reload Command
+!
+!
+!
+!This product contains cryptographic features and is subject to United
+!States and local country laws governing import, export, transfer and
+!use. Delivery of Cisco cryptographic products does not imply
+!third-party authority to import, export, distribute or use encryption.
+!Importers, exporters, distributors and users are responsible for
+!compliance with U.S. and local country laws. By using this product you
+!agree to comply with applicable laws and regulations. If you are unable
+!to comply with U.S. and local laws, return this product immediately.
+!
+!A summary of U.S. laws governing Cisco cryptographic products may be found at:
+!http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+!
+!If you require further assistance please contact us by sending email to
+!export@cisco.com.
+!
+!cisco ASR1006 (RP2) processor with 4201744K/6147K bytes of memory.
+!Processor board ID FXS1911Q4PF
+!4 Ten Gigabit Ethernet interfaces
+!32768K bytes of non-volatile configuration memory.
+!8388608K bytes of physical memory.
+!1884159K bytes of eUSB flash at bootflash:.
+!78085207K bytes of SATA hard disk at harddisk:.
+!
+!Configuration register is 0x2102
+!
+!cgn01.hkg08#display software version
+!               ^
+!% Invalid input detected at '^' marker.
+!
+!cgn01.hkg08#display version
+!               ^
+!% Invalid input detected at '^' marker.
+!
+!cgn01.hkg08#terminal length 0
+!cgn01.hkg08#ping 63.223.29.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.29.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cgn01.hkg08#
+!cgn01.hkg08#exit

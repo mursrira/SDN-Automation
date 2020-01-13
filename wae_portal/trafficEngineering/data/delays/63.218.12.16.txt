@@ -1,0 +1,132 @@
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!*                                                                         *
+!*      EEEEE  OOO  L           RRRR   OOO  U   U TTTTT EEEEE RRRR         *
+!*      E     O   O L           R   R O   O U   U   T   E     R   R        *
+!*      EEEE  O   O L           RRRR  O   O U   U   T   EEEE  RRRR         *
+!*      E     O   O L           R  R  O   O U   U   T   E     R  R         *
+!*      EEEEE  OOO  LLLLL       R   R  OOO   UUU    T   EEEEE R   R        *
+!*                                                                         *
+!*             Do not provision new services on this device!               *
+!***************************************************************************
+!C
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!
+!br03.ldn01#environment no more
+!Translating "environment"...domain server (63.221.246.95)
+!
+!Translating "environment"...domain server (63.221.246.95)
+!
+!% Bad IP address or host name% Unknown command or computer name, or unable to find computer address
+!br03.ldn01#terminal length 0
+!br03.ldn01#set cli screen-length 0
+!               ^
+!% Invalid input detected at '^' marker.
+!
+!br03.ldn01#screen-length 0 temporary
+!            ^
+!% Invalid input detected at '^' marker.
+!
+!br03.ldn01#show version
+!Cisco IOS Software, c7600rsp72043_rp Software (c7600rsp72043_rp-ADVIPSERVICESK9-M), Version 12.2(33)SRE9, RELEASE SOFTWARE (fc2)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2013 by Cisco Systems, Inc.
+!Compiled Fri 06-Sep-13 02:32 by prod_rel_team
+!
+!ROM: System Bootstrap, Version 12.2(33r)SRE, RELEASE SOFTWARE (fc1)
+!BOOTLDR: Cisco IOS Software, c7600rsp72043_rp Software (c7600rsp72043_rp-ADVIPSERVICESK9-M), Version 12.2(33)SRE9, RELEASE SOFTWARE (fc2)
+!
+!br03.ldn01 uptime is 1 year, 51 weeks, 1 day, 10 hours, 31 minutes
+!Uptime for this control processor is 1 year, 51 weeks, 1 day, 10 hours, 43 minutes
+!System returned to ROM by  power cycle (SP by power on)
+!System restarted at 23:08:39 GMT Thu Dec 8 2016
+!System image file is "bootdisk:c7600rsp72043-advipservicesk9-mz.122-33.SRE9.bin"
+!Last reload type: Normal Reload
+!
+!
+!This product contains cryptographic features and is subject to United
+!States and local country laws governing import, export, transfer and
+!use. Delivery of Cisco cryptographic products does not imply
+!third-party authority to import, export, distribute or use encryption.
+!Importers, exporters, distributors and users are responsible for
+!compliance with U.S. and local country laws. By using this product you
+!agree to comply with applicable laws and regulations. If you are unable
+!to comply with U.S. and local laws, return this product immediately.
+!
+!A summary of U.S. laws governing Cisco cryptographic products may be found at:
+!http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+!
+!If you require further assistance please contact us by sending email to
+!export@cisco.com.
+!
+!Cisco CISCO7609-S (M8500) processor (revision 1.0) with 3670016K/262144K bytes of memory.
+!Processor board ID FOX1514G6T3
+! BASEBOARD: RSP720-10GE
+! CPU: MPC8548_E, Version: 2.1, (0x80390021)
+! CORE: E500, Version: 2.2, (0x80210022)
+! CPU:1200MHz, CCB:400MHz, DDR:200MHz,
+! L1:    D-cache 32 kB enabled
+!        I-cache 32 kB enabled
+!
+!Last reset from power-on
+!13 Virtual Ethernet interfaces
+!102 Gigabit Ethernet interfaces
+!20 Ten Gigabit Ethernet interfaces
+!
+!500472K bytes of Internal ATA PCMCIA card (Sector size 512 bytes).
+!Configuration register is 0x2102
+!
+!br03.ldn01#display software version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!br03.ldn01#display version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!br03.ldn01#terminal length 0
+!br03.ldn01#ping 63.218.12.105
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.12.105, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!br03.ldn01#ping 63.218.12.121
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.12.121, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!br03.ldn01#ping 63.223.14.81
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.14.81, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/4/4 ms
+!br03.ldn01#ping 63.218.12.49
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.12.49, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!br03.ldn01#ping 63.218.12.125
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.12.125, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!br03.ldn01#ping 63.218.12.117
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.12.117, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/3/4 ms
+!br03.ldn01#
+!br03.ldn01#exit

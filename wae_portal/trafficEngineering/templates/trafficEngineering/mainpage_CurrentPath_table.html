@@ -1,0 +1,260 @@
+<!--DOCTYPE html>
+<html-->
+<script>
+
+var exludeCrtsContentVar = "";
+function getOPTPATHS()
+{
+
+selectedLsp = document.getElementById('lspKey').value;
+selectedPathCount = document.getElementById('PathCount').value;
+selectedLspPostOpt = document.getElementById('FateLSP').value;
+selectedAutoRoute = document.getElementById('autoRoute').checked;
+ex_crts_id = document.getElementById('excl-crt');
+exludeCrts = document.getElementById('exludeCrts').checked;
+ex_crts_text = ""
+if(ex_crts_id){
+	ex_crts_text = ex_crts_id.value;
+	if(!exludeCrts){
+		exludeCrtsContentVar = "";
+	}
+}
+//alert(selectedLsp + selectedPathCount + selectedLspPostOpt + selectedAutoRoute + ex_crts_text);
+if(selectedLsp == "")
+{
+        alert("Please select a LSP");
+}else if(selectedPathCount == ""){
+
+	alert("Please select Path Count");
+}else if(selectedLspPostOpt == ""){
+	alert("Please select Fate of LSP after Optimisation")
+}else{
+	$("#content #LSPinputbox").children().prop('disabled',true);
+	$("#GetOptPaths").prop('disabled',true);
+        $( "#loading" ).show();
+        $('#OptPathsTable').empty();
+	$('#DeviceConfTable').empty();
+        $.ajax({
+                        //async: false,
+                        method: 'POST',
+                        url: '/getoptmisedPath',
+                        data: {'lsp': selectedLsp,'pathCount':selectedPathCount,'lspFate':selectedLspPostOpt,'autoRoute':selectedAutoRoute,'excludeCircuits':ex_crts_text,'exludeCrts':exludeCrts},
+                        success: function (data) {
+                          //alert(data);
+                          $('#OptPathsTable').empty();
+                          $('#OptPathsTable').append(data);
+                          $("#content *").children().prop('disabled',false);
+                          $( "#loading" ).hide();
+                        },
+                        error: function(data){
+			  $("#content *").children().prop('disabled',false);
+                          $( "#loading" ).hide();
+			  if(data.status == 403){
+                                alert("User Session Expired, Please re-login");
+                                window.location="logout";
+                          }else if(data.status == 0){
+                                alert("Server is no more reachable. Make sure its running and reachable");
+                          }else{
+                                alert(data.responseText);
+                          }
+                        },
+                });
+        }
+}
+
+function excludeCheckBox(chkbx){
+	if(chkbx.checked != true){
+		exludeCrtsContentVar = document.getElementById('excl-crt').value;
+		document.getElementById('excl-crt').value = "";
+		all_chk = $("#content #OptPathsTable #PathTable :checkbox");
+		len = all_chk.length;
+		for (index = 0; index < len; ++index) {
+			all_chk[index].checked = false;
+			all_chk[index].disabled = true;
+		}
+	}else{
+		document.getElementById('excl-crt').value = exludeCrtsContentVar;
+		lines = exludeCrtsContentVar.split('\n');
+		all_chk = $("#content #OptPathsTable #PathTable :checkbox");
+		len = all_chk.length;
+		for (index = 0; index < len; ++index) {
+			if(lines.indexOf(all_chk[index].value) != -1){
+				all_chk[index].checked = true;
+			}
+			all_chk[index].disabled = false;
+		}
+	}
+}
+</script>
+
+<!--Table for Displaying Current Path of Specific LSP-->
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+       th, td {
+            min-width: 105px;
+        } 
+        
+        #TableIdCurrPath table {
+            overflow-y: scroll;
+	    font-family: arial, sans-serif;
+	
+        }
+        #TableIdCurrPath tbody {
+            overflow-y: scroll;
+            display: block;
+            height: 170px;
+        }
+        #TableIdCurrPath thead {
+            display: table-row;
+        }
+        /* only styling below here */
+        
+         table {
+            border-collapse: collapse;
+	    	width: 100px;
+        }
+        
+        th, td {
+            border: 1px solid white;
+	    	font-size: 70%; 
+          	text-align: center;
+		}
+
+        th {
+            border-width: 1px;
+        }
+        td {
+            border-width: 1px;
+        }
+        tr:first-child td {
+            border-top-width: 0;
+        }
+	tr:nth-child(even) {
+            background-color: #eee;
+	    color: #000;
+	    border: 1px solid black;
+        }
+       
+    </style>
+</head>
+<body>
+
+
+
+<!--h3>No nested divs</h3-->
+<div id="TableIdCurrPath">
+    <table>
+    	
+        <thead>	
+                         <th>Step</th>
+                         <th>Local Node</th>
+                         <th>Local IF_IP</th>
+                         <th>Local IF_Name</th>
+                         <th>Remote Node</th>
+                         <th>Remote IF_Name</th>
+                         <th>Remote IP</th>
+                         <th>Delay</th>
+        </thead>
+        <tbody>
+        	{% for lspPath in lspPaths %}
+                          <tr> <td colspan="8"><font size="1.5"> PATH - {{lspPath.pathOption}}
+			 {% if lspPath.isActual %}
+				(ACTUAL)
+			 {% else %}
+			 	{% if lspPath.isActive %}
+                    (Configured)
+			 	{% else %}
+					(Configured)
+                         	{% endif %}
+			{% endif %}
+            &nbsp;&nbsp;&nbsp; (DELAY: {{lspPath.latency}})
+			</td></tr>
+                          {% for pathHop in lspPath.hop %}
+                          		
+                                <tr>
+                                        <td>{{pathHop.step}}</td>
+                                        <td>{{pathHop.local_node}}</td>
+                                        <td>{{pathHop.local_ifipadd}}</td>
+                                        <td>{{pathHop.local_ifname}}</td>
+                                        <td>{{pathHop.remote_node}}</td>
+                                        <td>{{pathHop.remote_ifname}}</td>
+                                        <td>{{pathHop.remote_ifipadd}}</td>
+                                        <td>{{pathHop.latency}}</td> 
+                                </tr>
+                        {% endfor %}
+                        
+					<tr><font size="1.5">
+                                        <td>&nbsp;</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                           </font>
+                        </tr>
+                        {% endfor %}
+
+
+
+                  
+
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
+<br>
+<center>
+<!--Button for selecting the number of Paths-->
+<select id="PathCount" name="Paths" class="btn btn-default" type="submit">
+  
+  <option value="" selected = "selected">Path Count</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+  <option value="4">Four</option>
+	
+</select>&nbsp;&nbsp;&nbsp;
+
+<!--Button for selecting Optimization Criteria
+<select id="Criteria" name="Paths" class="btn btn-default" type="submit">
+
+  <option value="" selected = "selected">Optimization Criteria</option>
+  <option value="Delay">Delay</option>
+  <option value="Bandwidth">Bandwidth</option>
+
+</select>&nbsp;&nbsp;&nbsp; -->
+
+<!--Button for deciding Fate of  LSP-->
+<select id="FateLSP" name="FateLsp" class="btn btn-default" type="submit">
+
+  <option value="" selected = "selected">LSP Post Optimization</option>
+  <option value="true">Shutdown</option>
+  <option value="false">Load Sharing</option>
+
+</select>&nbsp;&nbsp;&nbsp;
+
+<input type="text" name="lspKey" id="lspKey" hidden value={{lspval}} ></input>&nbsp;
+<!--checkbox for Auto route-->
+<input id="autoRoute" type="checkbox" name="AutoRoute" value="true" checked>Auto-Route</input>&nbsp;
+
+<input id="exludeCrts" type="checkbox" name="exludeCrts" value="True" onclick="excludeCheckBox(this);" checked>ExcludeCircuits</input>&nbsp;
+<!-- Get Optimized Path Button -->
+
+<input class="btn btn-default" type="submit" value="Get Optimized Paths" id="GetOptPaths" name="GetOptPaths" onclick="getOPTPATHS();">&nbsp;
+<br><br>
+<!--checkbox for Auto route
+<form action="">
+<input type="checkbox" name="AutoRoute" value="val-auto">Auto-Route<br>
+
+</form-->
+
+
+</center>

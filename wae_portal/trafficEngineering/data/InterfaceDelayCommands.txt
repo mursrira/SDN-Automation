@@ -1,0 +1,16 @@
+Commands for node:P-4:172.16.1.64
+PINGDirection;P-4:GigabitEthernet0/2:P-3:GigabitEthernet0/1;P-4:GigabitEthernet0/3:P-1:GigabitEthernet0/3;P-4:GigabitEthernet0/1:P-2:GigabitEthernet0/2;
+ping 10.0.0.25;ping 10.0.0.13;ping 10.0.0.21;
+---------------------
+Commands for node:P-1:172.16.1.61
+PINGDirection;P-1:GigabitEthernet0/3:P-4:GigabitEthernet0/3;P-1:GigabitEthernet0/2:P-3:GigabitEthernet0/2;P-1:GigabitEthernet0/1:P-2:GigabitEthernet0/1;
+ping 10.0.0.14;ping 10.0.0.10;ping 10.0.0.6;
+---------------------
+Commands for node:P-2:172.16.1.62
+PINGDirection;P-2:GigabitEthernet0/3:P-3:GigabitEthernet0/3;P-2:GigabitEthernet0/1:P-1:GigabitEthernet0/1;P-2:GigabitEthernet0/2:P-4:GigabitEthernet0/1;
+ping 10.0.0.18;ping 10.0.0.5;ping 10.0.0.22;
+---------------------
+Commands for node:P-3:172.16.1.63
+PINGDirection;P-3:GigabitEthernet0/3:P-2:GigabitEthernet0/3;P-3:GigabitEthernet0/1:P-4:GigabitEthernet0/2;P-3:GigabitEthernet0/2:P-1:GigabitEthernet0/2;
+ping 10.0.0.17;ping 10.0.0.26;ping 10.0.0.9;
+---------------------

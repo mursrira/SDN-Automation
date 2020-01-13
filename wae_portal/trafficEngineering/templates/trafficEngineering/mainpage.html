@@ -1,0 +1,208 @@
+{% extends "trafficEngineering/header.html" %}
+
+{% block content %}
+
+<!-- For Logout Button -->
+
+{% load staticfiles%}
+<style>
+.preLoad{
+ margin:0;
+ position:absolute;
+ top:50%;
+ left:50%;
+ margin-right: -50%;
+ transform:translate(-50%,-50%);
+}
+
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+</style>
+<div align="center" id="preLoad" class="preLoad">
+<span id="loading" hidden>
+<img src="{% static 'trafficEngineering/img/ajax-loader.gif' %}" class="responsive-img" width ="100px" alt="face" align="left">
+</span></div>
+
+
+<div class="col-md-12">
+
+
+<div class="col-md-10 align="center">
+</div>
+
+		
+<div class="col-md-2" align="center">  
+
+<a href="/logout">
+<button type="button" class="btn btn-default btn-sm">
+<span class="glyphicon glyphicon-log-out"></span> Log Out
+- {{ request.session.user }}
+</button>
+</a>
+
+</div>
+</div>
+
+<div id="content">
+
+ <script>
+function getCurrentPath()
+{
+
+selectedLsp = document.getElementById('lsp').value;
+if(selectedLsp == "")
+{
+	alert("Please select a LSP");
+}else{  
+	$("#content *").children().prop('disabled','true');
+	$( "#loading" ).show();
+	$('#CurrPathTable').empty();
+	$('#OptPathsTable').empty();
+	$('#DeviceConfTable').empty();
+	$.ajax({	
+ 			//async: false,
+			method: 'POST',
+			url: '/currentPath',
+			data: {'lsp': selectedLsp},
+			success: function (data) {
+			  //alert(data);
+			  $('#CurrPathTable').empty();
+			  $('#CurrPathTable').append(data);
+			  $("#content *").children().prop('disabled',false);
+			  $( "#loading" ).hide();
+			},
+			error: function(data){
+			  $("#content *").children().prop('disabled',false);
+                          $( "#loading" ).hide();
+                          
+			  if(data.status == 403){
+                                alert("User Session Expired, Please re-login");
+                                window.location="logout";
+                          }else if(data.status == 0){
+                                alert("Server is no more reachable. Make sure its running and reachable");
+                          }else{
+				alert(data.responseText);
+			  }
+                        },
+		});
+	}
+}
+
+
+function getAllLSP()
+{
+// Make it blank
+$('#lsp').empty();
+$('#content #LSPinputbox #lspSearch').val('');
+//Make CurrPathTable Empty
+$('#CurrPathTable').empty();
+$('#OptPathsTable').empty();
+$('#DeviceConfTable').empty();
+$("#content *").children().prop('disabled',true);
+//$("#LSPinputbox *").children().prop('disabled',true);
+
+$( "#loading" ).show();
+//alert('Calling getALL');
+$.ajax({
+                       // async: false,
+	                method: 'POST',
+                        url: '/getallLsp',
+                        data: {},
+                        success: function (data) {
+                          //alert(data);
+                          $('#lsp').append(data);
+			  //Option to add SEARCH BOX
+		   	  $('#content #LSPinputbox #lsp').each(function(){
+    				var $select = $(this);
+    				$('#content #LSPinputbox #lsp').data('options', $('#content #LSPinputbox #lsp').find('option'));
+			  });
+			  $('#CurrPath').css('visibility','visible');
+			  $("#content *").children().prop('disabled',false);
+			  //$("#LSPinputbox *").children().prop('disabled',false);
+			 
+			  $( "#loading" ).hide();
+                        },
+			error: function(data){
+			  $("#content *").children().prop('disabled',false);
+			  $( "#loading" ).hide();
+			  if(data.status == 403){
+                                alert("User Session Expired, Please re-login");
+                                window.location="logout";
+                          }else if(data.status == 0){
+                                alert("Server is no more reachable. Make sure its running and reachable");
+                          }else{
+                                alert(data.responseText);
+                          }
+                        },
+                });
+}
+
+
+function filterFunction() {
+    var $prev = null; 
+    $select = $("#content #LSPinputbox #lsp");
+    var $options = $select.data('options');
+    search = document.getElementById("lspSearch").value.trim().toLowerCase();
+    $options.each(function(){
+        var $option = $(this);
+        var optionText = $option.text().toLowerCase();
+        if(search == "" || optionText.indexOf(search) >= 0) {
+            if ($option.parent().length) {
+            		$prev = $option;
+                return;
+            }
+            if (!$prev) $select.prepend($option);
+            else $prev.after($option);
+            $prev = $option;
+        }
+        else {
+        	  $option.remove();
+        }
+    });
+}
+</script>
+<body>
+
+<!--/div--> <!--comment it content end div-->
+
+
+ <div class="col-md-12" style="text-align: center;">
+     
+   <div id="LSPinputbox" class="col-md-4 col-xs-8 col-sm-8" style="padding-top: 10px;">	
+
+		<!--form action="ShowCurrentLspPath"-->
+		<input type="text" placeholder="Search.." class="form-control" name="lspSearch" id="lspSearch" onkeyup="filterFunction()">
+  		<select name="lsp" id="lsp" size="8" class="form-control" >
+   		<!-- {% for lsp in lspKeyList %}
+                	<option value=" {{lsp.name}}:::{{lsp.sourceKey.name}}">{{lsp.name}}  ({{lsp.sourceKey.name}})</option>
+    		     {% endfor %}-->
+  		</select>
+  	<br>
+  	<input class="btn btn-default" type="submit" value="Fetch LSPs" id="FetchLSP" onclick="getAllLSP();" >&nbsp;&nbsp;&nbsp;
+  	<input class="btn btn-default" type="submit" value="Show Current Path" id="CurrPath" style="visibility:hidden"  onclick="getCurrentPath();"> 
+ 
+ 
+	<!--/form-->
+    </div>
+
+
+           <div id="CurrPathTable" class="col-md-8 col-xs-4 col-sm-4" style="padding-top: 10px;"></div>
+	   <br><br>
+           <div id="DeviceConfTable" class="col-md-4 col-xs-8 col-sm-8" style="padding-top: 5px;"></div>
+           <div id="OptPathsTable" class="col-md-8 col-xs-4 col-sm-4" style="padding-top: 5px;"></div>
+ </div>
+
+</div> <!--content end div-->
+
+
+
+
+
+</body>
+
+{#{%include "trafficEngineering/includes/htmlsnippet1.html" %}#}
+
+{% endblock %}

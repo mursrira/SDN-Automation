@@ -1,0 +1,39 @@
+!Cisco IOS XR Software
+!
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!
+!
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!Authentication succeeded. Your password will expire in 2 weeks + 5 days  + 1 hours 
+!
+!
+!RP/0/RSP0/CPU0:var04.chc01#terminal length 0
+!Wed Jan 23 10:02:44.204 GMT
+!RP/0/RSP0/CPU0:var04.chc01#ping 63.223.35.61
+Wed Jan 23 10:02:44.745 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.35.61, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/3/4 ms
+!RP/0/RSP0/CPU0:var04.chc01#ping 63.223.35.82
+Wed Jan 23 10:02:45.666 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.35.82, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:var04.chc01#ping 63.223.35.65
+Wed Jan 23 10:02:46.556 GMT
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.223.35.65, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!RP/0/RSP0/CPU0:var04.chc01#
+!RP/0/RSP0/CPU0:var04.chc01#exit

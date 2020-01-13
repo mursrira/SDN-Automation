@@ -1,0 +1,71 @@
+!C
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!C
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!
+!var02.cpt01#environment no more
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!var02.cpt01#terminal length 0
+!var02.cpt01#set cli screen-length 0
+!                ^
+!% Invalid input detected at '^' marker.
+!
+!var02.cpt01#screen-length 0 temporary
+!             ^
+!% Invalid input detected at '^' marker.
+!
+!var02.cpt01#show version
+!Cisco IOS Software, 7300 Software (C7300-P-M), Version 12.2(33)SB10, RELEASE SOFTWARE (fc1)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2011 by Cisco Systems, Inc.
+!Compiled Wed 06-Apr-11 14:37 by prod_rel_team
+!
+!ROM: System Bootstrap, Version 12.2(22r)S, RELEASE SOFTWARE (fc1)
+!
+! var02.cpt01 uptime is 4 years, 9 weeks, 6 days, 12 hours, 28 minutes
+!Uptime for this control processor is 4 years, 9 weeks, 6 days, 12 hours, 6 minutes
+!System returned to ROM by power-on
+!System restarted at 21:34:16 UTC Sat Aug 16 2014
+!System image file is "disk0:c7300-p-mz.122-33.SB10.bin"
+!Last reload type: Normal Reload
+!
+!cisco 7300 (NPEG100) processor (revision B) with 983040K/65536K bytes of memory.
+!Processor board ID SMQ1251N44H
+!SB-1 CPU at 800Mhz, Implementation 0x401, Rev 0.2, 512KB L2 Cache
+!4 slot midplane, Version 69.48
+!
+!Last reset from power-on
+!3 Gigabit Ethernet interfaces
+!6 Packet over SONET interfaces
+!1021K bytes of non-volatile configuration memory.
+!
+!125184K bytes of ATA compact flash in bootdisk (Sector size 512 bytes).
+!250880K bytes of ATA compact flash in disk0 (Sector size 512 bytes).
+!Configuration register is 0x2102
+!
+!var02.cpt01#display software version
+!               ^
+!% Invalid input detected at '^' marker.
+!
+!var02.cpt01#display version
+!               ^
+!% Invalid input detected at '^' marker.
+!
+!var02.cpt01#terminal length 0
+!var02.cpt01#ping 63.218.188.66
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.188.66, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!var02.cpt01#
+!var02.cpt01#exit

@@ -1,0 +1,102 @@
+!
+!***************************************************************************
+!*   This system is the property of PCCW Global.  Authorized users only.   *
+!*            Unauthorized access and usage will be prosecuted.            *
+!* All activities are monitored. Usage implies acceptance of all policies. *
+!***************************************************************************
+!C
+!This router uses the new ACS
+!
+!(omit auth line)
+!(omit auth line)
+!Authentication succeeded. Your password will expire in 2 weeks + 5 days  + 1 hours 
+!
+!cr01.par03#environment no more
+!             ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.par03#terminal length 0
+!cr01.par03#set cli screen-length 0
+!                ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.par03#screen-length 0 temporary
+!            ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.par03#show version
+!Cisco Internetwork Operating System Software 
+!IOS (tm) GS Software (C12KPRP-K4P-M), Version 12.0(32)SY6, RELEASE SOFTWARE (fc2)
+!Technical Support: http://www.cisco.com/techsupport
+!Copyright (c) 1986-2008 by cisco Systems, Inc.
+!Compiled Fri 02-May-08 12:42 by pwade
+!Image text-base: 0x00010000, data-base: 0x056A4000
+!
+!ROM: System Bootstrap, Version 12.0(20040128:214555) [assafb-PRP1P_20040101 1.8dev(2.83)] DEVELOPMENT SOFTWARE
+!BOOTLDR: GS Software (C12KPRP-K4P-M), Version 12.0(32)SY6, RELEASE SOFTWARE (fc2)
+!
+! cr01.par03 uptime is 2 years, 39 weeks, 4 days, 19 hours, 9 minutes
+!Uptime for this control processor is 2 years, 39 weeks, 4 days, 11 hours, 38 minutes
+!System returned to ROM by error - a System Error, PC 0x13FD2AC at 02:42:32 UTC Tue Oct 14 2014
+!System restarted at 14:53:27 GMT Wed Apr 20 2016
+!System image file is "disk0:c12kprp-k4p-mz.120-32.SY6.bin"
+!
+!cisco 12008/PRP (MPC7457) processor (revision 0x00) with 2097152K bytes of memory.
+!MPC7457 CPU at 1263Mhz, Rev 1.2, 512KB L2, 2048KB L3 Cache
+!Last reset from power-on
+!Channelized E1, Version 1.0.
+!
+!1 Route Processor Card
+!2 Clock Scheduler Cards
+!3 Switch Fabric Cards
+!2 T1/E1 BITS controllers
+!1 four-port OC3 POS controller (4 POS).
+!1 four-port OC12 POS controller (4 POS).
+!3 OC48 POS controllers (3 POS).
+!1 Three Port Gigabit Ethernet/IEEE 802.3z controller (3 GigabitEthernet).
+!1 eight-port FastEthernet/IEEE 802.3u controller (8 FastEthernet).
+!3 Ethernet/IEEE 802.3 interface(s)
+!8 FastEthernet/IEEE 802.3 interface(s)
+!3 GigabitEthernet/IEEE 802.3 interface(s)
+!11 Packet over SONET network interface(s)
+!2043K bytes of non-volatile configuration memory.
+!
+!215040K bytes of ATA PCMCIA card at slot 0 (Sector size 512 bytes).
+!65536K bytes of Flash internal SIMM (Sector size 256K).
+!Configuration register is 0x2102
+!
+!cr01.par03#display software version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.par03#display version
+!              ^
+!% Invalid input detected at '^' marker.
+!
+!cr01.par03#terminal length 0
+!cr01.par03#ping 63.218.142.86
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.142.86, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!cr01.par03#ping 63.218.192.33
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.192.33, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr01.par03#ping 63.218.142.70
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.142.70, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+!cr01.par03#ping 63.218.142.82
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 63.218.142.82, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+!cr01.par03#
+!cr01.par03#exit
